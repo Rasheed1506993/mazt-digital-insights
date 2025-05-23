@@ -98,14 +98,14 @@ const Contact = () => {
   <h3 className="text-xl font-semibold text-gray-800 mb-4">موقعنا على الخريطة</h3>
   <div className="rounded-lg overflow-hidden h-64 w-full">
     <iframe
-      src="https://www.google.com/maps?ll=21.54976,39.142814&z=15&t=m&hl=en&gl=EG&mapclient=embed&cid=11716713269451236947"
-      width="100%"
-      height="100%"
-      allowFullScreen=""
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      className="border-0 w-full h-full"
-    ></iframe>
+  src="https://www.google.com/maps?q=21.54976,39.142814&z=15&output=embed"
+  width="100%"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
   </div>
 
               </div>
