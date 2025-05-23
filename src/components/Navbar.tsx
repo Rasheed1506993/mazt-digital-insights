@@ -20,11 +20,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2 space-x-reverse">
-              <div className="bg-blue-900 text-white p-2 rounded-lg">
-                <span className="font-bold text-xl">MAZT</span>
-              </div>
-              <span className="font-bold text-gray-800 text-lg">مكتب المازن</span>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/logo.png" 
+                alt="مكتب المازن - MAZT" 
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
 

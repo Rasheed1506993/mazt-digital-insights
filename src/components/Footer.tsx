@@ -9,11 +9,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 space-x-reverse mb-4">
-              <div className="bg-blue-600 text-white p-2 rounded-lg">
-                <span className="font-bold text-xl">MAZT</span>
-              </div>
-              <span className="font-bold text-xl">مكتب المازن</span>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/logo.png" 
+                alt="مكتب المازن - MAZT" 
+                className="h-16 w-auto"
+              />
             </div>
             <p className="text-gray-300 mb-4">
               مكتب المازن لاستشارات الزكاة والضريبة - شريكك الموثوق في الحلول المحاسبية والضريبية
