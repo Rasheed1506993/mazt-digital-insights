@@ -30,21 +30,21 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="text-white hidden md:flex items-center space-x-8 space-x-reverse">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'text-blue-900 bg-blue-50'
-                    : 'text-gray-600 hover:text-blue-900 hover:bg-gray-50'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
+<div className="hidden md:flex items-center space-x-8 space-x-reverse">
+  {navItems.map((item) => (
+    <Link
+      key={item.name}
+      to={item.path}
+      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+        location.pathname === item.path
+          ? 'text-blue-900 bg-blue-50'
+          : 'text-white hover:text-blue-200 hover:bg-blue-800'
+      }`}
+    >
+      {item.name}
+    </Link>
+  ))}
+</div>
 
           {/* Contact Info */}
           <div className="hidden lg:flex items-center space-x-4 space-x-reverse text-sm text-gray-600">
@@ -72,25 +72,25 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden text-white">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'text-blue-900 bg-blue-50'
-                    : 'text-gray-600 hover:text-blue-900 hover:bg-gray-50'
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+  <div className="md:hidden text-white">
+    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-blue-900 border-t">
+      {navItems.map((item) => (
+        <Link
+          key={item.name}
+          to={item.path}
+          className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+            location.pathname === item.path
+              ? 'text-blue-900 bg-blue-50'
+              : 'text-white hover:text-blue-200 hover:bg-blue-800'
+          }`}
+          onClick={() => setIsOpen(false)}
+        >
+          {item.name}
+        </Link>
+      ))}
+    </div>
+  </div>
+)}
     </nav>
   );
 };
