@@ -98,7 +98,7 @@ const Contact = () => {
   <h3 className="text-xl font-semibold text-gray-800 mb-4">موقعنا على الخريطة</h3>
   <div className="rounded-lg overflow-hidden h-64 w-full">
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.750192083721!2d39.19054807519816!3d24.46071697820905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15cbd50ac918a21d%3A0x3b86ad17c42966d6!2z2KfZhNmF2K_YqSDYp9mE2YXZhNmK2YTZitmG!5e0!3m2!1sar!2ssa!4v1716460000000!5m2!1sar!2ssa"
+      src="https://www.google.com/maps?ll=21.54976,39.142814&z=15&t=m&hl=en&gl=EG&mapclient=embed&cid=11716713269451236947"
       width="100%"
       height="100%"
       allowFullScreen=""
