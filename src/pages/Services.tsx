@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -34,7 +33,7 @@ const services = [
     description:
       "يتميز مكتب المازن بتنفيذ عمليات تسجيل الحسابات بدقة وتفصيل، مما يسهم في إنشاء سجل دقيق للمعاملات المالية اليومية و يضمن التزام المنشأة بالمبادئ المحاسبية.",
     icon: "https://aztc.sa/wp-content/uploads/2024/01/budget-3.png",
-    href: "/service/account-registration",
+    href: "/account-registration",
   },
   {
     id: "startup-development",
