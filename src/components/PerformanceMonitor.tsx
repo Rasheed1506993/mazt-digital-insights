@@ -1,42 +1,40 @@
 
+import { useEffect } from 'react';
 
-import { useEffect } from "react"
+interface LayoutShiftEntry extends PerformanceEntry {
+  hadRecentInput: boolean;
+  value: number;
+}
 
-export default function PerformanceMonitor() {
+interface LargestContentfulPaintEntry extends PerformanceEntry {
+  processingStart: number;
+}
+
+const PerformanceMonitor = () => {
   useEffect(() => {
-    if (typeof window !== "undefined" && "performance" in window) {
-      // Monitor Core Web Vitals
-      const observer = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          if (entry.entryType === "largest-contentful-paint") {
-            console.log("LCP:", entry.startTime)
-          }
-          if (entry.entryType === "first-input") {
-            console.log("FID:", entry.processingStart - entry.startTime)
-          }
-          if (entry.entryType === "layout-shift") {
-            if (!entry.hadRecentInput) {
-              console.log("CLS:", entry.value)
-            }
+    // Cumulative Layout Shift
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.entryType === 'layout-shift') {
+          const layoutShiftEntry = entry as LayoutShiftEntry;
+          if (!layoutShiftEntry.hadRecentInput) {
+            console.log('CLS:', layoutShiftEntry.value);
           }
         }
-      })
-
-      observer.observe({ entryTypes: ["largest-contentful-paint", "first-input", "layout-shift"] })
-
-      // Monitor page load performance
-      window.addEventListener("load", () => {
-        const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming
-        console.log("Page Load Time:", navigation.loadEventEnd - navigation.fetchStart)
-        console.log("DOM Content Loaded:", navigation.domContentLoadedEventEnd - navigation.fetchStart)
-        console.log("First Byte:", navigation.responseStart - navigation.fetchStart)
-      })
-
-      return () => {
-        observer.disconnect()
+        
+        if (entry.entryType === 'largest-contentful-paint') {
+          const lcpEntry = entry as LargestContentfulPaintEntry;
+          console.log('LCP:', lcpEntry.processingStart || entry.startTime);
+        }
       }
-    }
-  }, [])
+    });
 
-  return null
-}
+    observer.observe({ entryTypes: ['layout-shift', 'largest-contentful-paint'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return null;
+};
+
+export default PerformanceMonitor;

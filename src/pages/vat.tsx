@@ -81,8 +81,6 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
 export default function VATPage() {
   return (
     <div className="rtl">
-      
-
       {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
@@ -231,7 +229,7 @@ export default function VATPage() {
                 icon: "https://aztc.sa/wp-content/uploads/2024/01/financial_13161444-50x50.png",
                 title: "رفع إقرار ضريبة القيمة المضافة",
                 description:
-                  "نقوم برفع إقرار ضريبة القيمة المضافة بناءً على موافقة العميل بالنيابة عنه ووفقًا للإجراءات الرسمية.",
+                  "نقوم برفع إقرار ضريبة القيمة المضافة بناءً على موافقة العميل بالنيابة عنه وفقًا للإجراءات الرسمية.",
               },
               {
                 icon: "https://aztc.sa/wp-content/uploads/2024/01/man_14170697-50x50.png",
@@ -455,8 +453,6 @@ export default function VATPage() {
           </div>
         </AnimatedSection>
       </main>
-
-      
     </div>
   )
 }

@@ -12,6 +12,9 @@ import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import AccountRegistration from "./pages/AccountRegistration";
+import CostAccountingPage from "./pages/cost-accounting";
+import TaxIncomePage from "./pages/tax-income";
+import VATPage from "./pages/vat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +32,9 @@ const App = () => (
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/service/cost-accounting" element={<CostAccountingPage />} />
+              <Route path="/service/tax-income" element={<TaxIncomePage />} />
+              <Route path="/service/vat" element={<VATPage />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/account-registration" element={<AccountRegistration />} />

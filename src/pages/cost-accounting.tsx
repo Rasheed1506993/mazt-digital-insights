@@ -1,4 +1,3 @@
-
 import type React from "react"
 
 import Header from "@/components/Header"
@@ -95,8 +94,6 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
 export default function CostAccountingPage() {
   return (
     <div className="rtl">
-    
-
       {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
@@ -323,8 +320,6 @@ export default function CostAccountingPage() {
           </div>
         </AnimatedSection>
       </main>
-
-      
     </div>
   )
 }
