@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 export default function VATPage() {
   return (
     <div className="min-h-screen bg-white" dir="rtl">
-      <Navbar />
+    
 
       {/* Hero Section */}
       <motion.section
@@ -340,7 +340,7 @@ export default function VATPage() {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   )
 }
