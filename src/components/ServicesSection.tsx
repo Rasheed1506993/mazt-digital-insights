@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Calculator, FileText, TrendingUp, Receipt } from "lucide-react"
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -128,13 +129,15 @@ export default function ServicesSection() {
 
           {/* CTA Button */}
           <motion.div variants={titleVariants} className="text-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#edc870] hover:bg-[#423f42] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold"
-            >
-              قراءة المزيد
-            </motion.button>
+   <Link to="/services">
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="bg-[#edc870] hover:bg-[#423f42] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold"
+  >
+    قراءة المزيد
+  </motion.button>
+</Link>
           </motion.div>
         </motion.div>
       </div>
