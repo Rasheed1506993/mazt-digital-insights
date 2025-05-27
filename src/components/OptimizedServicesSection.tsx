@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, memo } from "react"
 import LazyImage from "./LazyImage"
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -136,8 +137,10 @@ export default function OptimizedServicesSection() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="bg-[#edc870] hover:bg-[#423f42] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold"
-            >
-              قراءة المزيد
+            >  <Link
+              to="/services">
+                  قراءة المزيد
+            </Link>
             </motion.button>
           </motion.div>
         </motion.div>
