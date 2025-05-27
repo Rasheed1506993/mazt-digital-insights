@@ -1,143 +1,315 @@
 
 import React from 'react';
-import { Calculator, FileText, TrendingUp, DollarSign, PieChart, BarChart3 } from 'lucide-react';
-import ServiceCard from '../components/ServiceCard';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+const services = [
+  {
+    id: "tax-income",
+    title: "ضريبة الدخل",
+    description:
+      "يتعامل مكتب المازن بكفاءة مع جميع جوانب ضريبة الدخل، بدءًا من تقديم الإشعارات الضريبية وصولًا إلى حساب الضرائب بأقل قدر من الضغط على المنشأة.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/budget.png",
+    href: "/service/tax-income",
+  },
+  {
+    id: "cost-accounting",
+    title: "محاسبة التكاليف",
+    description:
+      "يتم تحليل ومتابعة التكاليف بشكل دوري، مما يساهم في تحديد نقاط التحسين وتحقيق كفاءة أكبر في إدارة الموارد المالية.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/budget-1.png",
+    href: "/service/cost-accounting",
+  },
+  {
+    id: "vat",
+    title: "ضريبـة القيمـة المضافـة",
+    description:
+      "يقدم المكتب حلاً مخصصًا لامتثال المنشئة لضريبة القيمة المضافة، بدءًا من التسجيل وانتهاءً بتقديم التقارير والتصاريح بشكل دوري.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/budget-2.png",
+    href: "/service/vat",
+  },
+  {
+    id: "account-registration",
+    title: "تسجيل الحسابات",
+    description:
+      "يتميز مكتب المازن بتنفيذ عمليات تسجيل الحسابات بدقة وتفصيل، مما يسهم في إنشاء سجل دقيق للمعاملات المالية اليومية و يضمن التزام المنشأة بالمبادئ المحاسبية.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/budget-3.png",
+    href: "/service/account-registration",
+  },
+  {
+    id: "startup-development",
+    title: "تطوير المنشأت الناشئة",
+    description:
+      "يوفر مكتب المازن استشارات محاسبية متخصصة للمشاريع الناشئة، مساهمًا في توجيهها نحو النجاح وتطويرها بشكل فعّال.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/business-profile_4886485.png",
+    href: "/service/startup-development",
+  },
+  {
+    id: "budgets",
+    title: "الموازنات",
+    description:
+      "يتعاون مكتب المازن مع العملاء في وضع موازنات دقيقة تعكس رؤية مالية شاملة وتسهم في تحقيق الأهداف المالية المستقبلية.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/accounting_10496581.png",
+    href: "/service/budgets",
+  },
+  {
+    id: "zakat",
+    title: "الزكاة",
+    description:
+      "يُقدم المكتب خدمات متكاملة لإعداد إعلانات الزكاة والدخل، مع التركيز على الامتثال الكامل وتقديم النصائح اللازمة.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/weight_5035401.png",
+    href: "/service/zakat",
+  },
+  {
+    id: "withholding-tax",
+    title: "ضريبة الاستقطاع",
+    description:
+      "يدير مكتب المازن الالتزامات المتعلقة بضريبة الاستقطاع بكفاءة، مما يضمن استيفاء الالتزامات الضريبية بدقة وفقًا للتشريعات السارية.",
+    icon: "https://aztc.sa/wp-content/uploads/2024/01/money-bag_5755263.png",
+    href: "/service/withholding-tax",
+  },
+];
+
+const workSteps = [
+  {
+    number: "1",
+    title: "دراسة وتحليل الأعمال",
+    items: [
+      "تحليل النشاط التجاري وفهم طبيعته.",
+      "دراسة الحالة المحاسبية والمالية",
+      "استعراض وتحليل دليل الحسابات.",
+      "تحليل الوضع الضريبي للمنشأة.",
+    ],
+    bgColor: "#edc870",
+  },
+  {
+    number: "2",
+    title: "التنفيذ والمراقبة",
+    items: [
+      "توزيع المهام على الفرق المختصة.",
+      "بدء تنفيذ الخطة المحاسبية والضريبية.",
+      "استلام المستندات وفحصها بدقة.",
+      "إعداد تقارير شاملة وموثوقة",
+    ],
+    bgColor: "#423f42",
+  },
+  {
+    number: "3",
+    title: "بناء استراتيجية",
+    items: [
+      "إعداد خطة استراتيجية لتحديد الأهداف والنتائج .",
+      "إنشاء خطة محاسبية واضحة لتوجيه الأعمال.",
+      "وضع خطة ضريبية واضحة لتحقيق الأداء الأمثل.",
+      "تحديد الأهداف من كل تقرير محاسبي وضريبي.",
+    ],
+    bgColor: "#edc870",
+  },
+  {
+    number: "4",
+    title: "قياس النتائج",
+    items: [
+      "قياس تطور التقارير للعميل.",
+      "تحديد مواطن الخلل في النشاط.",
+      "توضيح ومناقشة النقاط المؤثرة.",
+      "تقديم استشارة مخصصة لتطوير الأعمال",
+    ],
+    bgColor: "#423f42",
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+const flipVariants = {
+  hidden: { opacity: 0, rotateY: -90 },
+  visible: {
+    opacity: 1,
+    rotateY: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
 
 const Services = () => {
-  const services = [
-    {
-      icon: Calculator,
-      title: 'تسجيل الحسابات والتقارير المالية',
-      description: 'نقدم خدمات تسجيل الحسابات وإعداد التقارير المالية الدورية والسنوية وفقاً للمعايير المحاسبية المعتمدة، مع ضمان الدقة والشفافية في جميع البيانات المالية.',
-    },
-    {
-      icon: FileText,
-      title: 'إعداد وتقديم إقرارات الزكاة وضريبة القيمة المضافة',
-      description: 'نساعدك في إعداد وتقديم جميع الإقرارات الضريبية المطلوبة بما في ذلك إقرارات الزكاة وضريبة القيمة المضافة، مع ضمان الامتثال للأنظمة السعودية.',
-    },
-    {
-      icon: TrendingUp,
-      title: 'محاسبة التكاليف والتحليل المالي',
-      description: 'نوفر خدمات تحليل التكاليف والأداء المالي لمساعدتك في اتخاذ قرارات مالية سليمة وتحسين الربحية وكفاءة العمليات.',
-    },
-    {
-      icon: DollarSign,
-      title: 'إدارة ضريبة الدخل وضريبة الاستقطاع',
-      description: 'نقدم خدمات شاملة في مجال ضريبة الدخل وضريبة الاستقطاع، بما يشمل الحساب والتقديم والمتابعة مع الجهات المختصة.',
-    },
-    {
-      icon: PieChart,
-      title: 'تقديم استشارات للمنشآت الناشئة والمتوسطة',
-      description: 'نوفر استشارات متخصصة للمنشآت الناشئة والمتوسطة في مجالات المحاسبة والضرائب والتخطيط المالي لمساعدتها على النمو والتطور.',
-    },
-    {
-      icon: BarChart3,
-      title: 'إعداد الموازنات وخطط النمو المالي',
-      description: 'نساعدك في إعداد الموازنات السنوية وخطط النمو المالي طويلة الأمد، مع تحليل الأداء ووضع استراتيجيات لتحقيق الأهداف المالية.',
-    },
-  ];
-
   return (
-    <div className="min-h-screen" dir="rtl">
+    <div className="min-h-screen bg-white" dir="rtl">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">خدماتنا المتخصصة</h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              نقدم مجموعة شاملة من الخدمات المحاسبية والضريبية المتخصصة لتلبية جميع احتياجات عملائنا
-            </p>
+      <motion.section
+        className="relative min-h-[600px] flex items-center justify-end"
+        style={{
+          backgroundImage: "url('https://aztc.sa/wp-content/uploads/2021/08/wepik-export-20240112202807zxnZ.jpeg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-2xl mr-auto lg:mr-16">
+            <motion.div
+              className="bg-black/40 p-8 lg:p-12 rounded-lg backdrop-blur-sm"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <motion.h1
+                className="text-4xl lg:text-5xl font-bold text-white mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                خدماتنا
+              </motion.h1>
+              <motion.p
+                className="text-lg text-white/90 mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+              >
+                أفضل الخدمات الاستشارية تجعلك تصل إلى هدفك
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+              >
+                <Link
+                  to="/contact"
+                  className="inline-block bg-[#edc870] hover:bg-[#d4b55e] text-[#423f42] font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  أطلب الخدمة الآن
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Services Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              كيف نعمل معك؟
-            </h2>
-            <p className="text-lg text-gray-600">
-              نتبع منهجية واضحة لضمان تقديم أفضل الخدمات
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                1
-              </div>
-              <h3 className="text-xl font-semibold mb-2">الاستشارة الأولية</h3>
-              <p className="text-gray-600">
-                نستمع لاحتياجاتك ونقيم وضعك المالي الحالي
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-semibold mb-2">وضع الخطة</h3>
-              <p className="text-gray-600">
-                نضع خطة مخصصة تناسب احتياجاتك وأهدافك
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-semibold mb-2">التنفيذ</h3>
-              <p className="text-gray-600">
-                نبدأ بتنفيذ الخدمات وفقاً للخطة المتفق عليها
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                4
-              </div>
-              <h3 className="text-xl font-semibold mb-2">المتابعة</h3>
-              <p className="text-gray-600">
-                نوفر متابعة مستمرة وتقارير دورية
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            جاهز لبدء التعاون معنا؟
-          </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            تواصل معنا اليوم لمناقشة احتياجاتك والحصول على عرض مخصص
-          </p>
-          <a
-            href="/contact"
-            className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-lg transition-colors"
+      {/* Services Grid Section */}
+      <section
+        className="py-20 relative"
+        style={{
+          backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/map.png')",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat",
+          backgroundColor: "#f2f2f2",
+        }}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
-            احصل على استشارة مجانية
-          </a>
+            {services.map((service, index) => (
+              <motion.div
+                key={service.id}
+                variants={flipVariants}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                }}
+                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                style={{ height: "310px" }}
+              >
+                <Link to={service.href} className="block h-full">
+                  <div className="flex flex-col items-center text-center h-full">
+                    <motion.div
+                      className="w-20 h-20 bg-[#edc870] rounded-full flex items-center justify-center mb-6 group-hover:bg-[#d4b55e] transition-colors duration-300"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <img
+                        src={service.icon || "/placeholder.svg"}
+                        alt={service.title}
+                        className="w-12 h-12 object-contain"
+                      />
+                    </motion.div>
+
+                    <h3 className="text-xl font-bold text-[#423f42] mb-4 group-hover:text-[#edc870] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-gray-600 text-sm leading-relaxed flex-1">{service.description}</p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Work Process Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {workSteps.map((step, index) => (
+              <motion.div key={step.number} variants={itemVariants} className="relative" whileHover={{ scale: 1.02 }}>
+                <div
+                  className="p-8 rounded-lg text-white min-h-[300px] flex flex-col"
+                  style={{ backgroundColor: step.bgColor }}
+                >
+                  <motion.div
+                    className="text-6xl font-bold mb-4 opacity-20"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    {step.number}.
+                  </motion.div>
+
+                  <h3 className="text-xl font-bold mb-6">{step.title}</h3>
+
+                  <ul className="space-y-3 flex-1">
+                    {step.items.map((item, itemIndex) => (
+                      <motion.li
+                        key={itemIndex}
+                        className="text-sm leading-relaxed flex items-start"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + itemIndex * 0.1 }}
+                      >
+                        <span className="inline-block w-2 h-2 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        {item}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
     </div>
