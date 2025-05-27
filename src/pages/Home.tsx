@@ -43,7 +43,7 @@ const LoadingFallback = ({ height = "h-96", bgColor = "bg-gray-100" }) => (
 const Home = () => {
   return (
     <div className="min-h-screen">
-      <Header />
+      
       <motion.main 
         variants={containerVariants} 
         initial="hidden" 
@@ -94,7 +94,7 @@ const Home = () => {
           </Suspense>
         </motion.div>
       </motion.main>
-      <Footer />
+      
     </div>
   );
 };
