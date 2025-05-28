@@ -1,5 +1,3 @@
-
-
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, memo } from "react"
@@ -74,23 +72,23 @@ const ServiceCard = memo(({ service, index }: { service: (typeof services)[0]; i
       y: -5,
       transition: { duration: 0.2 },
     }}
-    className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 text-center group will-change-transform"
+    className="bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 text-center group will-change-transform"
   >
     <motion.div
       whileHover={{ scale: 1.05, rotate: 2 }}
-      className="w-16 h-16 bg-[#edc870] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#423f42] transition-colors duration-300"
+      className="w-12 h-12 sm:w-16 sm:h-16 bg-[#edc870] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-[#423f42] transition-colors duration-300"
     >
       <LazyImage
         src={service.image}
         alt={service.title}
-        className="w-8 h-8 filter brightness-0 invert"
+        className="w-6 h-6 sm:w-8 sm:h-8 filter brightness-0 invert"
         width={32}
         height={32}
       />
     </motion.div>
 
-    <h3 className="text-lg font-semibold text-[#423f42] mb-3">{service.title}</h3>
-    <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+    <h3 className="text-base sm:text-lg font-semibold text-[#423f42] mb-2 sm:mb-3 leading-tight">{service.title}</h3>
+    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{service.description}</p>
   </motion.div>
 ))
 
@@ -101,22 +99,22 @@ export default function OptimizedServicesSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} className="py-12 md:py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section ref={ref} className="py-8 sm:py-12 md:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
           {/* Header */}
-          <motion.div variants={titleVariants} className="text-center mb-12">
+          <motion.div variants={titleVariants} className="text-center mb-8 sm:mb-12">
             <div className="flex items-center justify-center mb-4">
               <LazyImage
                 src="https://aztc.sa/wp-content/uploads/2024/01/logo-60x60.webp"
                 alt="شعار الخدمات"
-                className="w-12 h-12"
+                className="w-10 h-10 sm:w-12 sm:h-12"
                 width={48}
                 height={48}
               />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#423f42] mb-4">خدماتنا</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#423f42] mb-3 sm:mb-4">خدماتنا</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
               استشارات محاسبية وضريبية متفرّدة لتحقيق الامتثال المالي وتحسّين الأداء الإداري
             </p>
           </motion.div>
@@ -124,7 +122,7 @@ export default function OptimizedServicesSection() {
           {/* Services Grid */}
           <motion.div
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12"
           >
             {services.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
@@ -136,11 +134,11 @@ export default function OptimizedServicesSection() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-[#edc870] hover:bg-[#423f42] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold"
-            >  <Link
-              to="/services">
-                  قراءة المزيد
-            </Link>
+              className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 font-semibold text-sm sm:text-base"
+            >
+              <Link to="/services">
+                قراءة المزيد
+              </Link>
             </motion.button>
           </motion.div>
         </motion.div>
