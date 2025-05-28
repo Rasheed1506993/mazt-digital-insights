@@ -36,59 +36,59 @@ const sectionVariants = {
   },
 };
 
-const LoadingFallback = ({ height = "h-96", bgColor = "bg-gray-100" }) => (
-  <div className={`${height} ${bgColor} animate-pulse`} />
+const LoadingFallback = ({ height = "h-64 sm:h-80 md:h-96", bgColor = "bg-gray-100" }) => (
+  <div className={`${height} ${bgColor} animate-pulse mx-2 sm:mx-4 md:mx-0`} />
 );
 
 const Home = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full overflow-x-hidden">
       
       <motion.main 
         variants={containerVariants} 
         initial="hidden" 
         animate="visible" 
-        className="content-visibility-auto"
+        className="content-visibility-auto w-full"
       >
-        <motion.div variants={sectionVariants}>
+        <motion.div variants={sectionVariants} className="w-full">
           <OptimizedHeroSlider />
         </motion.div>
 
-        <motion.div variants={sectionVariants} className="content-visibility-auto">
+        <motion.div variants={sectionVariants} className="content-visibility-auto w-full px-2 sm:px-4 md:px-0">
           <Suspense fallback={<LoadingFallback />}>
             <AboutSection />
           </Suspense>
         </motion.div>
 
-        <motion.div variants={sectionVariants} className="content-visibility-auto">
-          <Suspense fallback={<LoadingFallback height="h-64" bgColor="bg-gray-50" />}>
+        <motion.div variants={sectionVariants} className="content-visibility-auto w-full px-2 sm:px-4 md:px-0">
+          <Suspense fallback={<LoadingFallback height="h-48 sm:h-56 md:h-64" bgColor="bg-gray-50" />}>
             <PartnersSection />
           </Suspense>
         </motion.div>
 
-        <motion.div variants={sectionVariants}>
+        <motion.div variants={sectionVariants} className="w-full px-2 sm:px-4 md:px-0">
           <OptimizedServicesSection />
         </motion.div>
 
-        <motion.div variants={sectionVariants} className="content-visibility-auto">
-          <Suspense fallback={<LoadingFallback bgColor="bg-gray-800" />}>
+        <motion.div variants={sectionVariants} className="content-visibility-auto w-full">
+          <Suspense fallback={<LoadingFallback height="h-64 sm:h-72 md:h-96" bgColor="bg-gray-800" />}>
             <StatsSection />
           </Suspense>
         </motion.div>
 
-        <motion.div variants={sectionVariants} className="content-visibility-auto">
+        <motion.div variants={sectionVariants} className="content-visibility-auto w-full px-2 sm:px-4 md:px-0">
           <Suspense fallback={<LoadingFallback />}>
             <FeaturesSection />
           </Suspense>
         </motion.div>
 
-        <motion.div variants={sectionVariants} className="content-visibility-auto">
-          <Suspense fallback={<LoadingFallback height="h-64" bgColor="bg-gray-50" />}>
+        <motion.div variants={sectionVariants} className="content-visibility-auto w-full px-2 sm:px-4 md:px-0">
+          <Suspense fallback={<LoadingFallback height="h-48 sm:h-56 md:h-64" bgColor="bg-gray-50" />}>
             <ClientsSection />
           </Suspense>
         </motion.div>
 
-        <motion.div variants={sectionVariants} className="content-visibility-auto">
+        <motion.div variants={sectionVariants} className="content-visibility-auto w-full">
           <Suspense fallback={<LoadingFallback />}>
             <ContactSection />
           </Suspense>
