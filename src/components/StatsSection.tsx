@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-
+import { Link } from 'react-router-dom';
 const stats = [
   {
     number: 2500,
@@ -120,6 +120,7 @@ export default function StatsSection() {
               دقة العرض والإفصاح للقوائم المالية، وذلك من خلال تطبيق المعايير
               الدولية المحاسبية المتبعة في المملكة العربية السعودية.
             </p>
+      <Link to="/contact">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -127,6 +128,7 @@ export default function StatsSection() {
             >
               تواصل معنا
             </motion.button>
+            </Link>
           </motion.div>
 
           {/* Right Stats */}

@@ -14,8 +14,11 @@ export default function VATPage() {
       {/* Hero Section */}
       <motion.section
         className="relative min-h-[600px] flex items-center justify-end bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('https://aztc.sa/wp-content/uploads/2021/08/wepik-export-20240112202807zxnZ.jpeg')",
+                style={{
+          backgroundImage: "url('/images/vat.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

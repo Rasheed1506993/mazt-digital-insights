@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-
+import { Link } from 'react-router-dom';
 const slides = [
   {
     id: 1,
@@ -158,9 +158,11 @@ export default function HeroSlider() {
                 </motion.p>
 
                 <motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
+                  <Link to="/contact">
                   <button className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
                     {slides[currentSlide].buttonText}
                   </button>
+                  </Link>
                 </motion.div>
               </div>
             </div>

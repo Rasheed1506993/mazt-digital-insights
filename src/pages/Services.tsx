@@ -157,7 +157,7 @@ const Services = () => {
       <motion.section
         className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center justify-end"
         style={{
-          backgroundImage: "url('https://aztc.sa/wp-content/uploads/2021/08/wepik-export-20240112202807zxnZ.jpeg')",
+          backgroundImage: "url('/images/services.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

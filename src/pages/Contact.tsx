@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,17 @@ const Contact = () => {
     subject: '',
     message: '',
   });
-
+  const rightVariants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+}
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -28,7 +39,14 @@ const Contact = () => {
   return (
     <div className="min-h-screen" dir="rtl">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+      <section 
+      className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16"
+              style={{
+    backgroundImage: "url('/lovable-uploads/slid-min-2-scaled.webp')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">اتصل بنا</h1>
@@ -49,8 +67,8 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <Phone className="h-6 w-6 text-blue-600" />
+                  <div className="bg-[#edc870] p-3 rounded-lg">
+                    <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">رقم الهاتف</h3>
@@ -59,8 +77,8 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <Mail className="h-6 w-6 text-blue-600" />
+                  <div className="bg-[#edc870] p-3 rounded-lg">
+                    <Mail className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">البريد الإلكتروني</h3>
@@ -69,8 +87,8 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <MapPin className="h-6 w-6 text-blue-600" />
+                  <div className="bg-[#edc870] p-3 rounded-lg">
+                    <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">العنوان</h3>
@@ -79,8 +97,8 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-blue-100 p-3 rounded-lg">
-                    <Clock className="h-6 w-6 text-blue-600" />
+                  <div className="bg-[#edc870] p-3 rounded-lg">
+                    <Clock className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">ساعات العمل</h3>
@@ -93,13 +111,24 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Map */}
+         {/* Right Map */}
               <div className="mt-8">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">موقعنا على الخريطة</h3>
-                <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-                  <p className="text-gray-600">خريطة الموقع - جدة، حي الشرقية</p>
-                </div>
+            <motion.div variants={rightVariants} className="h-96 lg:h-full min-h-[400px]">
+              <div className="w-full h-full rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.92571458222!2d39.142813499999995!3d21.5497598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3c56957baaf7f%3A0xa29a20a408bf2653!2z2KfZhNi52YXZiNiv2Yog2YTYpdiz2KrYtNin2LHYp9iqINin2YTZhdit2KfYs9io2KkgfCDYp9mE2LLZg9in2KkgfCDYp9mE2LbYsdmK2KjYqQ!5e0!3m2!1sen!2seg!4v1726662227759!5m2!1sen!2seg"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
               </div>
+            </motion.div>
+              </div>
+           
             </div>
 
             {/* Contact Form */}
@@ -193,7 +222,7 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2 space-x-reverse"
+                  className="w-full bg-[#edc870] hover:bg-[#edc870] text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2 space-x-reverse"
                 >
                   <Send className="h-5 w-5" />
                   <span>إرسال الرسالة</span>

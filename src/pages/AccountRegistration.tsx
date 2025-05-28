@@ -10,8 +10,10 @@ const AccountRegistration = () => {
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage:
-            "url('https://aztc.sa/wp-content/uploads/2024/01/insights-from-stock-chart-calculator-pen-finance-generative-ai-scaled.webp')",
+          backgroundImage: "url('/images/AccountRegistration.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>

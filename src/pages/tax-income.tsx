@@ -85,11 +85,14 @@ export default function TaxIncomePage() {
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{
-          backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/22-scaled.webp')",
+          backgroundImage: "url('/images/tax-income.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <motion.div
-          className="absolute inset-0 bg-black bg-opacity-49"
+          className="absolute inset-0 bg-black/50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -102,7 +105,7 @@ export default function TaxIncomePage() {
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           >
             <motion.div
-              className="text-sm mb-2"
+              className="bg-black/40 text-sm mb-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}

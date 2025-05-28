@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import LazyImage from "./LazyImage"
+import { Link } from 'react-router-dom';
 
 const slides = [
   {
@@ -150,7 +151,7 @@ export default function OptimizedHeroSlider() {
               className="w-full h-full object-cover"
               priority={currentSlide === 0}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-600/60"></div>
+            <div className="absolute inset-0 "></div>
           </div>
 
           {/* Content */}
@@ -175,11 +176,13 @@ export default function OptimizedHeroSlider() {
                   {currentSlideData.description}
                 </motion.p>
 
-                <motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
-                  <button className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
-                    {currentSlideData.buttonText}
-                  </button>
-                </motion.div>
+<motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
+  <Link to="/contact">
+    <button className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
+      {currentSlideData.buttonText}
+    </button>
+  </Link>
+</motion.div>
               </div>
             </div>
           </div>

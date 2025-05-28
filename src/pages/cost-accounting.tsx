@@ -97,12 +97,15 @@ export default function CostAccountingPage() {
       {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
-        style={{
-          backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/3-scaled.webp')",
+                style={{
+          backgroundImage: "url('/images/cost-account.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <motion.div
-          className="absolute inset-0 bg-black bg-opacity-49"
+          className="absolute inset-0 "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}

@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { MapPin, Mail, Clock } from "lucide-react"
+import { Link } from 'react-router-dom';
 
 const contactInfo = [
   {
@@ -90,6 +91,7 @@ const ContactSection = () => {
               نلتزم بتقديم أفضل الخدمات لك، ونضمن أن تكون تجربتك معنا مميزة. ابتعد عن التقليد واستفد من خبرتنا في مجال
               التحول الرقمي.
             </p>
+            <Link to="/contact">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -97,6 +99,7 @@ const ContactSection = () => {
             >
               تواصل الآن
             </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -164,6 +167,7 @@ const ContactSection = () => {
                 />
               </div>
             </motion.div>
+       
           </motion.div>
         </div>
       </section>
