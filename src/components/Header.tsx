@@ -1,18 +1,18 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
+import { TEXTS } from '../constants/texts';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { name: 'الرئيسية', path: '/' },
-    { name: 'من نحن', path: '/about' },
-    { name: 'الخدمات', path: '/services' },
-    { name: 'المدونة', path: '/blog' },
-    { name: 'اتصل بنا', path: '/contact' },
+    { name: TEXTS.header.nav.home, path: '/' },
+    { name: TEXTS.header.nav.about, path: '/about' },
+    { name: TEXTS.header.nav.services, path: '/services' },
+    { name: TEXTS.header.nav.blog, path: '/blog' },
+    { name: TEXTS.header.nav.contact, path: '/contact' },
   ];
   
   return (
@@ -51,11 +51,11 @@ const Header = () => {
           <div className="hidden xl:flex items-center space-x-4 space-x-reverse text-xs text-white">
             <div className="flex items-center space-x-1 space-x-reverse">
               <Phone className="h-3 w-3" />
-              <span className="hidden 2xl:inline">+966 53 962 8489</span>
+              <span className="hidden 2xl:inline">{TEXTS.footer.phone}</span>
             </div>
             <div className="flex items-center space-x-1 space-x-reverse">
               <Mail className="h-3 w-3" />
-              <span className="hidden 2xl:inline">mazen1221cool@gmail.com</span>
+              <span className="hidden 2xl:inline">{TEXTS.footer.email}</span>
             </div>
           </div>
 
@@ -64,7 +64,7 @@ const Header = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-white hover:text-gray-300 focus:outline-none p-2"
-              aria-label="فتح القائمة"
+              aria-label={TEXTS.header.menuLabel}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -96,11 +96,11 @@ const Header = () => {
               <div className="px-3 py-2 text-white text-sm">
                 <div className="flex items-center space-x-2 space-x-reverse mb-2">
                   <Phone className="h-4 w-4" />
-                  <span>+966 53 962 8489</span>
+                  <span>{TEXTS.footer.phone}</span>
                 </div>
                 <div className="flex items-center space-x-2 space-x-reverse">
                   <Mail className="h-4 w-4" />
-                  <span className="text-xs">mazen1221cool@gmail.com</span>
+                  <span className="text-xs">{TEXTS.footer.email}</span>
                 </div>
               </div>
             </div>

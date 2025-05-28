@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { TEXTS } from '../constants/texts';
 
 const Footer = () => {
   return (
@@ -17,44 +18,44 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">
-              مكتب المازن لاستشارات الزكاة والضريبة - شريكك الموثوق في الحلول المحاسبية والضريبية
+              {TEXTS.footer.description}
             </p>
           </div>
 
           {/* Contact Info */}
           <div className="text-center md:text-right">
-            <h3 className="text-lg font-semibold mb-4">معلومات التواصل</h3>
+            <h3 className="text-lg font-semibold mb-4">{TEXTS.footer.contactInfo}</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-center md:justify-start space-x-3 space-x-reverse">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
-                <span className="text-sm sm:text-base">+966 53 962 8489</span>
+                <span className="text-sm sm:text-base">{TEXTS.footer.phone}</span>
               </div>
               <div className="flex items-center justify-center md:justify-start space-x-3 space-x-reverse">
                 <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
-                <span className="text-xs sm:text-sm break-all">mazen1221cool@gmail.com</span>
+                <span className="text-xs sm:text-sm break-all">{TEXTS.footer.email}</span>
               </div>
               <div className="flex items-start justify-center md:justify-start space-x-3 space-x-reverse">
                 <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 mt-1" />
-                <span className="text-sm sm:text-base">جدة - حي الشرقية</span>
+                <span className="text-sm sm:text-base">{TEXTS.footer.address}</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="text-center md:text-right">
-            <h3 className="text-lg font-semibold mb-4">روابط سريعة</h3>
+            <h3 className="text-lg font-semibold mb-4">{TEXTS.footer.quickLinks}</h3>
             <div className="space-y-2">
               <a href="/services" className="block text-gray-300 hover:text-white transition-colors text-sm sm:text-base">
-                خدماتنا
+                {TEXTS.header.nav.services}
               </a>
               <a href="/about" className="block text-gray-300 hover:text-white transition-colors text-sm sm:text-base">
-                من نحن
+                {TEXTS.header.nav.about}
               </a>
               <a href="/blog" className="block text-gray-300 hover:text-white transition-colors text-sm sm:text-base">
-                المدونة
+                {TEXTS.header.nav.blog}
               </a>
               <a href="/contact" className="block text-gray-300 hover:text-white transition-colors text-sm sm:text-base">
-                اتصل بنا
+                {TEXTS.header.nav.contact}
               </a>
             </div>
           </div>
@@ -62,7 +63,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
           <p className="text-gray-400 text-xs sm:text-sm">
-            © 2024 مكتب المازن لاستشارات الزكاة والضريبة. جميع الحقوق محفوظة.
+            {TEXTS.footer.copyright}
           </p>
         </div>
       </div>
