@@ -11,6 +11,15 @@ const AboutNewDesign = () => {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
         
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80"
+            alt="Office workspace"
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full -translate-x-48 -translate-y-48"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full translate-x-48 translate-y-48"></div>
@@ -120,7 +129,15 @@ const AboutNewDesign = () => {
             </div>
 
             <div className="relative">
+              {/* Main office image */}
               <div className="bg-white rounded-3xl p-8 shadow-2xl">
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="فريق العمل"
+                    className="w-full h-48 object-cover rounded-2xl"
+                  />
+                </div>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
                     <Globe className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -178,6 +195,14 @@ const AboutNewDesign = () => {
                 <p className="text-blue-100 leading-relaxed text-lg">
                   {TEXTS.about.vision.description}
                 </p>
+                {/* Vision background image */}
+                <div className="mt-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="الرؤية"
+                    className="w-full h-32 object-cover rounded-2xl opacity-20"
+                  />
+                </div>
               </div>
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-200/30 rounded-full -z-10"></div>
             </div>
@@ -193,6 +218,14 @@ const AboutNewDesign = () => {
                 <p className="text-indigo-100 leading-relaxed text-lg">
                   {TEXTS.about.mission.description}
                 </p>
+                {/* Mission background image */}
+                <div className="mt-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="الرسالة"
+                    className="w-full h-32 object-cover rounded-2xl opacity-20"
+                  />
+                </div>
               </div>
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-purple-200/30 rounded-full -z-10"></div>
             </div>
@@ -259,6 +292,15 @@ const AboutNewDesign = () => {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full -translate-x-48 -translate-y-48"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full translate-x-48 translate-y-48"></div>
+        
+        {/* CTA Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="اتصال"
+            className="w-full h-full object-cover opacity-5"
+          />
+        </div>
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
