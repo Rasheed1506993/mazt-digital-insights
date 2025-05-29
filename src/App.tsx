@@ -15,6 +15,10 @@ import AccountRegistration from "./pages/AccountRegistration";
 import CostAccountingPage from "./pages/cost-accounting";
 import TaxIncomePage from "./pages/tax-income";
 import VATPage from "./pages/vat";
+import WithholdingTax from "./pages/withholding-tax";
+import ZakaT from "./pages/zakat";
+import BudgeTs from "./pages/budgets";
+import StarTupdev from "./pages/startupdev";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +42,12 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/account-registration" element={<AccountRegistration />} />
+              
+              <Route path="/service/withholding-tax" element={<WithholdingTax />} />
+              <Route path="/service/zakat" element={<ZakaT />} />
+              <Route path="/service/budgets" element={<BudgeTs />} />
+              <Route path="/service/startupdev" element={<StarTupdev />} />
+             
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

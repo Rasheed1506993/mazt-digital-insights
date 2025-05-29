@@ -37,12 +37,12 @@ const services = [
     href: "/account-registration",
   },
   {
-    id: "startup-development",
+    id: "startupdev",
     title: "تطوير المنشأت الناشئة",
     description:
       "يوفر مكتب المازن استشارات محاسبية متخصصة للمشاريع الناشئة، مساهمًا في توجيهها نحو النجاح وتطويرها بشكل فعّال.",
     icon: "https://aztc.sa/wp-content/uploads/2024/01/business-profile_4886485.png",
-    href: "/service/startup-development",
+    href: "/service/startupdev",
   },
   {
     id: "budgets",
