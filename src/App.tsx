@@ -20,6 +20,7 @@ import ZakaT from "./pages/zakat";
 import BudgeTs from "./pages/budgets";
 import StarTupdev from "./pages/startupdev";
 import NotFound from "./pages/NotFound";
+import AboutNewDesign from "./pages/About-new-design";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
               <Route path="/service/zakat" element={<ZakaT />} />
               <Route path="/service/budgets" element={<BudgeTs />} />
               <Route path="/service/startupdev" element={<StarTupdev />} />
+             <Route path="/About-new-design" element={<AboutNewDesign />} />
              
               <Route path="*" element={<NotFound />} />
             </Routes>
