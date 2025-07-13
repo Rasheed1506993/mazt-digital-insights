@@ -4,7 +4,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/mazt-digital-insights/", // مهم جداً لمسارات GitHub Pages
+ // base: "/mazt-digital-insights/", // مهم جداً لمسارات GitHub Pages
+base: "/",
   server: {
     host: "::",
     port: 8080,
