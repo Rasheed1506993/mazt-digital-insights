@@ -23,10 +23,11 @@ const Header = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/logo.png" 
-                alt="مكتب المازن - MAZT" 
-                className="h-8 sm:h-10 w-auto"
-              />
+  src={`${import.meta.env.BASE_URL}lovable-uploads/logo.png`} 
+  alt="مكتب المازن - MAZT" 
+  className="h-8 sm:h-10 w-auto"
+/>
+
             </Link>
           </div>
 

@@ -98,11 +98,11 @@ export default function WithholdingTax() {
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
                 style={{
-          backgroundImage: "url('/images/withholding-tax.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+  backgroundImage: `url(${import.meta.env.BASE_URL}images/withholding-tax.webp)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
       >
         <motion.div
           className="absolute inset-0 bg-black/60"

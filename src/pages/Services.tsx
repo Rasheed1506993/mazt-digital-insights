@@ -157,11 +157,13 @@ const Services = () => {
       <motion.section
         className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center justify-end"
         style={{
-          backgroundImage: "url('/images/services.jpeg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+  backgroundImage: `url(${import.meta.env.BASE_URL}images/services.jpeg)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
+
+      
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

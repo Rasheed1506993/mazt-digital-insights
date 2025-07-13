@@ -12,10 +12,11 @@ const Footer = () => {
           <div className="text-center md:text-right">
             <div className="mb-4 flex justify-center md:justify-start">
               <img 
-                src="/lovable-uploads/logo.png" 
-                alt="مكتب المازن - MAZT" 
-                className="h-12 sm:h-16 w-auto"
-              />
+  src={`${import.meta.env.BASE_URL}lovable-uploads/logo.png`} 
+  alt="مكتب المازن - MAZT" 
+  className="h-8 sm:h-10 w-auto"
+/>
+
             </div>
             <p className="text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">
               {TEXTS.footer.description}

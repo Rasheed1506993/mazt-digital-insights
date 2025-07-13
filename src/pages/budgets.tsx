@@ -97,12 +97,13 @@ export default function BudgeTs() {
       {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
-                style={{
-          backgroundImage: "url('/images/budgets.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+                
+        style={{
+  backgroundImage: `url(${import.meta.env.BASE_URL}images/budgets.jpg)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
       >
         <motion.div
           className="absolute inset-0 bg-black/60"

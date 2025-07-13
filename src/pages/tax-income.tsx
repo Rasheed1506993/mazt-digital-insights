@@ -85,11 +85,11 @@ export default function TaxIncomePage() {
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{
-          backgroundImage: "url('/images/tax-income.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+  backgroundImage: `url(${import.meta.env.BASE_URL}images/tax-income.webp)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
       >
         <motion.div
           className="absolute inset-0 bg-black/50"

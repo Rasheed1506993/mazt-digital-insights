@@ -15,11 +15,11 @@ export default function VATPage() {
       <motion.section
         className="relative min-h-[600px] flex items-center justify-end bg-cover bg-center bg-no-repeat"
                 style={{
-          backgroundImage: "url('/images/vat.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+  backgroundImage: `url(${import.meta.env.BASE_URL}images/vat.webp)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

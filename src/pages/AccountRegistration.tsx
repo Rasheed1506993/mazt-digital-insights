@@ -9,12 +9,14 @@ const AccountRegistration = () => {
     {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat"
+      
         style={{
-          backgroundImage: "url('/images/AccountRegistration.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+  backgroundImage: `url(${import.meta.env.BASE_URL}images/AccountRegistration.webp)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+}}
+
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="container mx-auto px-4 h-full flex items-center">
