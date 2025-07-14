@@ -74,7 +74,7 @@ const AboutSection = () => {
               />
 
               <motion.h2 variants={leftVariants} className="text-2xl md:text-3xl font-bold text-[#423f42] mb-4">
-                مكتب مازن محمد صالح لاستشارات الزكاة والضريبة
+                شركاء الدقة لخدمات الأعمال
               </motion.h2>
 
               <motion.p variants={leftVariants} className="text-gray-600 leading-relaxed mb-8">
