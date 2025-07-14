@@ -31,7 +31,7 @@ const AboutNewDesign = () => {
             </span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            مكتب المازن للاستشارات
+            شركاء الدقة لخدمات الأعمال
             <span className="block text-blue-300">المحاسبية والضريبية</span>
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">

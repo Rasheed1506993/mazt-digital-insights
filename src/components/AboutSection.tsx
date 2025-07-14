@@ -69,7 +69,7 @@ const AboutSection = () => {
               <motion.img
                 variants={imageVariants}
                 src="https://aztc.sa/wp-content/uploads/2024/01/logo-alamoudi-gold-100x100.png"
-                alt="شعار مكتب المازن"
+                alt="شعار شركاء الدقة لخدمات الأعمال"
                 className="w-20 h-20 mx-auto mb-6"
               />
 

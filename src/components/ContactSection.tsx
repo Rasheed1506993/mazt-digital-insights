@@ -118,7 +118,7 @@ const ContactSection = () => {
               <div className="mb-8">
                 <p className="text-[#423f42] font-semibold mb-2">تواصل معنا</p>
                 <h2 className="text-2xl md:text-3xl font-bold text-[#423f42] mb-6">
-                  تواصل مع <span className="underline decoration-[#edc870]">مكتب المازن</span> للإستشارات
+                  تواصل مع <span className="underline decoration-[#edc870]">شركاء الدقة</span> للإستشارات
                 </h2>
               </div>
 

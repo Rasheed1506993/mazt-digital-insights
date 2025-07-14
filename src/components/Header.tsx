@@ -24,7 +24,7 @@ const Header = () => {
             <Link to="/" className="flex items-center">
               <img 
   src={`${import.meta.env.BASE_URL}lovable-uploads/logo.png`} 
-  alt="مكتب المازن - MAZT" 
+  alt="شركاء الدقة لخدمات الأعمال" 
   className="h-8 sm:h-10 w-auto"
 />
 
