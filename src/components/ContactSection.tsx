@@ -18,8 +18,8 @@ const contactInfo = [
   },
   {
     icon: Mail,
-    title: "info@maztc.sa",
-    link: "mailto:info@maztc.sa",
+    title: "info@aldikka.com",
+    link: "mailto:info@aldikka.com",
   },
   {
     icon: Clock,
