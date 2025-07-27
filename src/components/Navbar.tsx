@@ -55,7 +55,7 @@ const Navbar = () => {
             </div>
             <div className="flex items-center space-x-1 space-x-reverse">
               <Mail className="h-4 w-4" />
-              <span>mazen1221cool@gmail.com</span>
+              <span>info@aldikka.com</span>
             </div>
           </div>
 

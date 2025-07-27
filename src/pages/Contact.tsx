@@ -82,7 +82,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">البريد الإلكتروني</h3>
-                    <p className="text-gray-600">mazen1221cool@gmail.com</p>
+                    <p className="text-gray-600">info@aldikka.com</p>
                   </div>
                 </div>
 

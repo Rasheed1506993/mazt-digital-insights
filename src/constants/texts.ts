@@ -19,7 +19,7 @@ export const TEXTS = {
     contactInfo: 'معلومات التواصل',
     quickLinks: 'روابط سريعة',
     phone: '+966 53 962 8489',
-    email: 'mazen1221cool@gmail.com',
+    email: 'info@aldikka.com',
     address: 'جدة - حي الشرقية',
     copyright: '© 2024 شركاء الدقة لخدمات الأعمال. جميع الحقوق محفوظة.',
   },
