@@ -14,8 +14,9 @@ const Footer = () => {
               <img
   src={'/lovable-uploads/hlogo.png'}
   alt="شركاء الدقة لخدمات الأعمال"
-  className="h-16 sm:h-16 w-auto"
+  style={{ height: '100px', width: 'auto' }}
 />
+
 
             </div>
             <p className="text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">
