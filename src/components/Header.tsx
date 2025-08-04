@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+'90px' React, { useState } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { TEXTS } from '../constants/texts';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -38,7 +38,7 @@ const Header = ({ onNavigate, currentPath }) => {
               <img
   src={'/lovable-uploads/khlogo.png'}
   alt="شركاء الدقة لخدمات الأعمال"
-  style={{ height: '90px', width: 'auto' }}
+  style={{ height: '80px', width: 'auto' }}
 />
 
 
