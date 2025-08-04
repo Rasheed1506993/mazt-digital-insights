@@ -4,6 +4,18 @@ import { Menu, X, Phone, Mail } from 'lucide-react';
 import { TEXTS } from '../constants/texts';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Placeholder components to simulate routing without react-router-dom
+const useLocation = (path) => ({
+  pathname: path,
+});
+
+const Link = ({ to, children, ...props }) => {
+  return (
+    <a href="#" onClick={() => props.onClick && props.onClick()} className={props.className}>
+      {children}
+    </a>
+  );
+};
 
 const Header = ({ onNavigate, currentPath }) => {
   const [isOpen, setIsOpen] = useState(false);
