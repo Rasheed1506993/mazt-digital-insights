@@ -14,7 +14,7 @@ const Footer = () => {
               <img
   src={'/lovable-uploads/hlogo.png'}
   alt="شركاء الدقة لخدمات الأعمال"
-  className="h-18 sm:h-18 w-auto"
+  className="h-14 sm:h-14 w-auto"
 />
 
             </div>
