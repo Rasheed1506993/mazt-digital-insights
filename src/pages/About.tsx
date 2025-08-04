@@ -7,9 +7,9 @@ const About = () => {
   return (
     <div className="min-h-screen bg-white" dir="rtl">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-yellow-900 via-yellow-800 to-indigo-900 text-white py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary via-primary to-brand-blue text-white py-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-yellow-900/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
         
         {/* Background Image */}
         <div className="absolute inset-0">
@@ -21,28 +21,28 @@ const About = () => {
         </div>
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-400/10 rounded-full -translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full translate-x-48 translate-y-48"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-secondary/10 rounded-full -translate-x-48 -translate-y-48"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full translate-x-48 translate-y-48"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-6">
-            <span className="inline-block px-4 py-2 bg-yellow-500/20 rounded-full text-yellow-200 text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-2 bg-secondary/20 rounded-full text-secondary-foreground text-sm font-medium mb-4">
               {TEXTS.about.title}
             </span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
             شركاء الدقة لخدمات الأعمال
-            <span className="block text-yellow-300">المحاسبية والضريبية</span>
+            <span className="block text-secondary">المحاسبية والضريبية</span>
           </h1>
-          <p className="text-xl md:text-2xl text-yellow-100 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-secondary-foreground max-w-4xl mx-auto leading-relaxed">
             {TEXTS.about.subtitle}
           </p>
           
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold transition-all transform hover:scale-105">
+            <button className="px-8 py-4 bg-secondary hover:bg-secondary/90 rounded-lg font-semibold transition-all transform hover:scale-105">
               تواصل معنا الآن
             </button>
-            <button className="px-8 py-4 border-2 border-yellow-300 hover:bg-yellow-300 hover:text-yellow-900 rounded-lg font-semibold transition-all">
+            <button className="px-8 py-4 border-2 border-secondary hover:bg-secondary hover:text-primary rounded-lg font-semibold transition-all">
               اطلع على خدماتنا
             </button>
           </div>
