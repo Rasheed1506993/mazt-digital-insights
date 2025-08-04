@@ -12,10 +12,11 @@ const Footer = () => {
           <div className="text-center md:text-right">
             <div className="mb-4 flex justify-center md:justify-start">
               <img
-  src={'/lovable-uploads/hlogo.png'}
+  src={'/lovable-uploads/khlogo.png'}
   alt="شركاء الدقة لخدمات الأعمال"
   style={{ height: '100px', width: 'auto' }}
 />
+
 
 
             </div>
