@@ -1,5 +1,6 @@
-h-14ame from 'react';
+import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+
 import { TEXTS } from '../constants/texts';
 
 const Footer = () => {
