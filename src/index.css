@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 224 71% 4%;
 
-    --primary: 214 70% 38%;
+    --primary: 214 69% 38%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 39 94% 59%;
@@ -46,7 +46,7 @@
     --sidebar-ring: 39 100% 60%;
 
     /* Custom brand colors */
-    --brand-blue: 214 70% 38%;
+    --brand-blue: 214 69% 38%;
     --brand-orange: 39 94% 59%;
     --brand-blue-dark: 214 70% 30%;
     --brand-orange-light: 39 94% 70%;
@@ -148,3 +148,4 @@
     -webkit-line-clamp: 3;
   }
 }
+
