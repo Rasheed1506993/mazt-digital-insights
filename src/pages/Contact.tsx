@@ -40,7 +40,7 @@ const Contact = () => {
     <div className="min-h-screen" dir="rtl">
       {/* Hero Section */}
       <section 
-      className="bg-gradient-to-r from-primary to-brand-blue text-white py-16"
+      className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16"
               style={{
     backgroundImage: "url('/lovable-uploads/slid-min-2-scaled.webp')",
     backgroundSize: 'cover',
@@ -50,7 +50,7 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">اتصل بنا</h1>
-            <p className="text-xl text-primary-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               نحن هنا لمساعدتك - تواصل معنا للحصول على استشارة مجانية أو لمناقشة احتياجاتك
             </p>
           </div>
@@ -67,7 +67,7 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-secondary p-3 rounded-lg">
+                  <div className="bg-[#edc870] p-3 rounded-lg">
                     <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -77,7 +77,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-secondary p-3 rounded-lg">
+                  <div className="bg-[#edc870] p-3 rounded-lg">
                     <Mail className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -87,7 +87,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-secondary p-3 rounded-lg">
+                  <div className="bg-[#edc870] p-3 rounded-lg">
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -97,7 +97,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-secondary p-3 rounded-lg">
+                  <div className="bg-[#edc870] p-3 rounded-lg">
                     <Clock className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -147,7 +147,7 @@ const Contact = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="أدخل اسمك الكامل"
                   />
                 </div>
@@ -163,7 +163,7 @@ const Contact = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="أدخل بريدك الإلكتروني"
                   />
                 </div>
@@ -178,7 +178,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="أدخل رقم هاتفك"
                   />
                 </div>
@@ -193,7 +193,7 @@ const Contact = () => {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="">اختر موضوع الرسالة</option>
                     <option value="consultation">استشارة مجانية</option>
@@ -215,14 +215,14 @@ const Contact = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="اكتب رسالتك هنا..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2 space-x-reverse"
+                  className="w-full bg-[#edc870] hover:bg-[#edc870] text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2 space-x-reverse"
                 >
                   <Send className="h-5 w-5" />
                   <span>إرسال الرسالة</span>

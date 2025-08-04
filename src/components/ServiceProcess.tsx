@@ -40,7 +40,7 @@ export default function ServiceProcess() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {processSteps.map((step, index) => (
             <div key={index} className="text-center">
-              <div className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                 {step.step}
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
@@ -53,7 +53,7 @@ export default function ServiceProcess() {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg transition-colors">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition-colors">
             ابدأ معنا الآن
           </button>
         </div>

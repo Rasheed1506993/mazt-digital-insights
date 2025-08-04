@@ -178,7 +178,7 @@ export default function OptimizedHeroSlider() {
 
 <motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
   <Link to="/contact">
-    <button className="bg-secondary hover:bg-primary text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
+    <button className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
       {currentSlideData.buttonText}
     </button>
   </Link>
