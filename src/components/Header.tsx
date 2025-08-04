@@ -1,4 +1,4 @@
-'90px' React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { TEXTS } from '../constants/texts';
 import { motion, AnimatePresence } from 'framer-motion';
