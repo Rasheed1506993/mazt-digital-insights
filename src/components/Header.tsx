@@ -36,7 +36,7 @@ const Header = ({ onNavigate, currentPath }) => {
           <div className="flex items-center">
             <Link to="/" onClick={() => onNavigate('/')} className="flex items-center">
               <img
-                src={'/lovable-uploads/logo.png'}
+                src={'/lovable-uploads/headerlogo.png'}
                 alt="شركاء الدقة لخدمات الأعمال"
                 className="h-8 sm:h-10 w-auto"
                 onError={(e) => { e.target.src = "https://placehold.co/120x40/EDC870/004A99?text=Logo"; }}
