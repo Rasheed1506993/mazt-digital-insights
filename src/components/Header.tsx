@@ -38,7 +38,7 @@ const Header = ({ onNavigate, currentPath }) => {
               <img
                 src={'/lovable-uploads/hlogo.png'}
                 alt="شركاء الدقة لخدمات الأعمال"
-                className="h-8 sm:h-10 w-auto"
+                className="h-10 sm:h-12 w-auto"
                 onError={(e) => { e.target.src = "https://placehold.co/120x40/EDC870/004A99?text=Logo"; }}
               />
             </Link>
