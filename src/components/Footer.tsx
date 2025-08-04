@@ -28,15 +28,15 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">{TEXTS.footer.contactInfo}</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-center md:justify-start space-x-3 space-x-reverse">
-                <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
+                <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-brand-orange" />
                 <span className="text-sm sm:text-base">{TEXTS.footer.phone}</span>
               </div>
               <div className="flex items-center justify-center md:justify-start space-x-3 space-x-reverse">
-                <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400" />
+                <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-brand-orange" />
                 <span className="text-xs sm:text-sm break-all">{TEXTS.footer.email}</span>
               </div>
               <div className="flex items-start justify-center md:justify-start space-x-3 space-x-reverse">
-                <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 mt-1" />
+                <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-brand-orange mt-1" />
                 <span className="text-sm sm:text-base">{TEXTS.footer.address}</span>
               </div>
             </div>
