@@ -1,11 +1,10 @@
 import type React from "react"
-
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
+// تعريف حركات Framer Motion
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -74,6 +73,7 @@ const industryCardVariants = {
   },
 }
 
+// مكون لدمج الحركات
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -91,21 +91,22 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   )
 }
 
+// المكون الرئيسي للصفحة
 export default function ZakaT() {
   return (
     <div className="rtl">
       {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
-                style={{
-  backgroundImage: `url(${import.meta.env.BASE_URL}images/zack.webp)`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-}}
+        style={{
+          backgroundImage: `url(${import.meta.env.BASE_URL}images/zack.webp)`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         <motion.div
-          className="absolute inset-0 "
+          className="absolute inset-0 bg-[#004A99] opacity-90"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -144,7 +145,7 @@ export default function ZakaT() {
               العملاء من اتخاذ قرارات استراتيجية أفضل وتحقيق التوازن بين التكاليف والجودة.
             </motion.p>
             <motion.button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto"
+              className="bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] px-6 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1 }}
@@ -211,7 +212,7 @@ export default function ZakaT() {
             ].map((service, index) => (
               <motion.div
                 key={index}
-                className="bg-[#edc870] p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-[235px] flex flex-col justify-center cursor-pointer"
+                className="bg-[#EDC870] p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-[235px] flex flex-col justify-center cursor-pointer"
                 variants={cardVariants}
                 whileHover="hover"
               >
@@ -219,7 +220,7 @@ export default function ZakaT() {
                   <img src={service.icon || "/placeholder.svg"} alt={service.title} className="w-12 h-12 mx-auto" />
                 </motion.div>
                 <motion.h3
-                  className="text-lg font-semibold text-gray-800 mb-3"
+                  className="text-lg font-semibold text-[#004A99] mb-3"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -227,7 +228,7 @@ export default function ZakaT() {
                   {service.title}
                 </motion.h3>
                 <motion.p
-                  className="text-gray-700 text-sm"
+                  className="text-[#004A99] text-sm"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -240,7 +241,7 @@ export default function ZakaT() {
         </AnimatedSection>
 
         {/* Industries Section */}
-        <AnimatedSection className="py-16 bg-[#423f42] border-b border-white mb-16">
+        <AnimatedSection className="py-16 bg-[#004A99] border-b border-white mb-16">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-12"
@@ -292,14 +293,14 @@ export default function ZakaT() {
                   whileHover="hover"
                 >
                   <motion.div
-                    className="bg-[#edc870] p-3 rounded-full"
+                    className="bg-[#EDC870] p-3 rounded-full"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
                     <div className="w-11 h-11 flex items-center justify-center">
                       {industry.icon === "svg" ? (
                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 1.70666 1.70666">
-                          <g fill="rgb(0,0,0)">
+                          <g fill="#004A99">
                             <path d="m1.32675 1.41018h-.372555c-.0110394 0-.02-.0089685-.02-.02v-.149736c-.0217047-.28526.16961-.420189.17778-.425799.0550709-.043748.14865-.119417.16065-.132752.0218898-.0243189.0482362-.0382598.0722638-.0382598.020748 0 .0373307.0108465.0443346.029.0174567.0452087-.0264724.118693-.123697.206902-.0275945.0250551-.027626.0357795-.027626.0358898.00069291.0002126.0078622.00394094.0249724.00394094.0246654 0 .0551102-.00767717.0775512-.0195512.129972-.0688622.157736-.225819.158016-.227402l.041122-.272496c.00977953-.064748.0479173-.0877205.077626-.0877205.0185984 0 .0368465.00812598.0513937.022878.021315.021626.0327638.0548858.0322165.0936772-.00058268.0416535-.00011024.116445.00544488.236291.0105551.227736-.189315.444594-.26722.508941-.0654567.0540827-.0864449.170961-.0924134.218693-.00126378.00999213-.00977953.0175039-.0198583.0175039zm-.352555-.0400157h.335165c.00924803-.0596102.0351654-.170039.104177-.227051.073626-.0608031.262528-.264886.252732-.47626-.00558661-.120831-.00606693-.196496-.0054685-.238689.00037008-.0275945-.0071811-.0513071-.0207087-.0650394-.00698819-.00707087-.015126-.0109685-.0229213-.0109685-.0182087 0-.0331535.0210787-.0380669.0536929l-.0411811.272831c-.00127559.00757087-.0315433.178445-.178791.256445-.0282087.0149291-.0650945.0242087-.0962598.0242087-.0442205 0-.0580984-.0188189-.0624291-.0300394-.0127953-.0331378.0255827-.0679724.0381929-.0794173.103197-.093626.119205-.147484.113264-.162874-.00048819-.00127559-.0013189-.00341732-.00702756-.00341732-.00923622 0-.0259016.00655512-.0425433.0250276-.0181929.0202087-.151484.126134-.166638.138134-.00845669.00591732-.181874.129276-.161583.391331.00003937.00051575.00006693.00102756.00006693.00154331l.00000394.130543h.00001575z" />
                           </g>
                         </svg>
