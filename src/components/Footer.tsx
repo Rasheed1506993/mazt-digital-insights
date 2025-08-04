@@ -11,11 +11,11 @@ const Footer = () => {
           <div className="text-center md:text-right">
             <div className="mb-4 flex justify-center md:justify-start">
               <img
-                src={'/lovable-uploads/hlogo.png'}
-                alt="شركاء الدقة لخدمات الأعمال"
-                className="h-8 sm:h-10 w-auto"
-                onError={(e) => { e.target.src = "https://placehold.co/120x40/EDC870/004A99?text=Logo"; }}
-              />
+  src={'/lovable-uploads/hlogo.png'}
+  alt="شركاء الدقة لخدمات الأعمال"
+  className="h-14 sm:h-16 w-auto"
+/>
+
             </div>
             <p className="text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">
               {TEXTS.footer.description}
