@@ -36,10 +36,11 @@ const Header = ({ onNavigate, currentPath }) => {
           <div className="flex items-center">
             <Link to="/" onClick={() => onNavigate('/')} className="flex items-center">
               <img
-  src={'/lovable-uploads/hlogo.png'}
+  src={'/lovable-uploads/khlogo.png'}
   alt="شركاء الدقة لخدمات الأعمال"
-  className="h-14 sm:h-16 w-auto"
+  style={{ height: '100px', width: 'auto' }}
 />
+
 
             </Link>
           </div>
