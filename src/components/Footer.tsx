@@ -1,4 +1,4 @@
-import React from 'react';
+h-14ame from 'react';
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { TEXTS } from '../constants/texts';
 
@@ -13,7 +13,7 @@ const Footer = () => {
               <img
   src={'/lovable-uploads/hlogo.png'}
   alt="شركاء الدقة لخدمات الأعمال"
-  className="h-14 sm:h-16 w-auto"
+  className="h-18 sm:h-18 w-auto"
 />
 
             </div>
