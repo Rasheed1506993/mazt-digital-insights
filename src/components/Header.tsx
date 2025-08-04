@@ -38,7 +38,7 @@ const Header = ({ onNavigate, currentPath }) => {
               <img
   src={'/lovable-uploads/khlogo.png'}
   alt="شركاء الدقة لخدمات الأعمال"
-  style={{ height: '65px', width: 'auto' }}
+  style={{ height: '60px', width: 'auto' }}
 />
 
 
