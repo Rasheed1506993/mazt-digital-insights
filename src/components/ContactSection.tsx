@@ -8,13 +8,8 @@ import { Link } from 'react-router-dom';
 const contactInfo = [
   {
     icon: MapPin,
-    title: "الرياض، حي المصيف، شارع دبية بنت البراء",
-    link: "https://www.google.com/maps/dir//%D8%A7%D9%84%D8%B9%D9%85%D9%88%D8%AF%D9%8A+%D9%84%D8%A5%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D8%A9+%7C+%D8%A7%D9%84%D8%B2%D9%83%D8%A7%D8%A9+%7C+%D8%A7%D9%84%D8%B6%D8%B1%D9%8A%D8%A8%D8%A9+QM6P%2B33J+Dabiyah+Bint+Al+Bara,+Almasiaf+Riyadh+12465%E2%80%AD%E2%80%AD/@24.7602013,46.6851465,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3e2efd4962fa0543:0x32500a740d56a102!2m2!1d46.6851465!2d24.7602013?entry=ttu",
-  },
-  {
-    icon: MapPin,
-    title: "جدة، شارع حي الشرقية",
-    link: "https://maps.app.goo.gl/3p264i3JbDDQ2Ytu5",
+    title: "مكة المكرمة - الشوقية - مقابل كنتكي",
+    link: "https://maps.app.goo.gl/mecca-location",
   },
   {
     icon: Mail,

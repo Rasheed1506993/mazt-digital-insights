@@ -18,9 +18,9 @@ export const TEXTS = {
     description: 'شركاء الدقة لخدمات الأعمال - شريكك الموثوق في الحلول المحاسبية والضريبية',
     contactInfo: 'معلومات التواصل',
     quickLinks: 'روابط سريعة',
-    phone: '+966 53 962 8489',
+    phone: '0555069372',
     email: 'info@aldikka.com',
-    address: 'جدة - حي الشرقية',
+    address: 'مكة المكرمة - الشوقية - مقابل كنتكي',
     copyright: '© 2024 شركاء الدقة لخدمات الأعمال. جميع الحقوق محفوظة.',
   },
 
@@ -100,7 +100,7 @@ export const TEXTS = {
     workingHours: 'ساعات العمل',
     workingHoursDetails: 'الأحد - الخميس: 8:00 ص - 5:00 م\nالجمعة - السبت: مغلق',
     mapTitle: 'موقعنا على الخريطة',
-    mapDescription: 'خريطة الموقع - جدة، حي الشرقية',
+    mapDescription: 'خريطة الموقع - مكة المكرمة، الشوقية',
     formTitle: 'أرسل لنا رسالة',
     form: {
       name: 'الاسم الكامل *',

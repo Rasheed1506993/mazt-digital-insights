@@ -72,7 +72,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">رقم الهاتف</h3>
-                    <p className="text-gray-600" dir="ltr">+966 53 962 8489</p>
+                    <p className="text-gray-600" dir="ltr">0555069372</p>
                   </div>
                 </div>
 
@@ -92,7 +92,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-1">العنوان</h3>
-                    <p className="text-gray-600">جدة - حي الشرقية</p>
+                    <p className="text-gray-600">مكة المكرمة - الشوقية - مقابل كنتكي</p>
                   </div>
                 </div>
 
