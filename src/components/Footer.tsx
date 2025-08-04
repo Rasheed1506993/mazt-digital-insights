@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="text-center md:text-right">
             <div className="mb-4 flex justify-center md:justify-start">
               <img
-                src={'/lovable-uploads/logo.png'}
+                src={'/lovable-uploads/hlogo.png'}
                 alt="شركاء الدقة لخدمات الأعمال"
                 className="h-8 sm:h-10 w-auto"
                 onError={(e) => { e.target.src = "https://placehold.co/120x40/EDC870/004A99?text=Logo"; }}
