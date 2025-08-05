@@ -7,9 +7,9 @@ const About = () => {
   return (
     <div className="min-h-screen bg-white" dir="rtl">
       {/* Hero Section */}
-      <section className="relative bg-[#004A99] text-white py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-yellow-900 via-yellow-800 to-indigo-900 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#004A99]/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-yellow-900/50 to-transparent"></div>
         
         {/* Background Image */}
         <div className="absolute inset-0">
@@ -21,28 +21,28 @@ const About = () => {
         </div>
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#EDC870]/10 rounded-full -translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#004A99]/10 rounded-full translate-x-48 translate-y-48"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-400/10 rounded-full -translate-x-48 -translate-y-48"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full translate-x-48 translate-y-48"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-6">
-            <span className="inline-block px-4 py-2 bg-[#EDC870]/20 rounded-full text-[#EDC870] text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-2 bg-yellow-500/20 rounded-full text-yellow-200 text-sm font-medium mb-4">
               {TEXTS.about.title}
             </span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
             شركاء الدقة لخدمات الأعمال
-            <span className="block text-[#EDC870]">المحاسبية والضريبية</span>
+            <span className="block text-yellow-300">المحاسبية والضريبية</span>
           </h1>
-          <p className="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-yellow-100 max-w-4xl mx-auto leading-relaxed">
             {TEXTS.about.subtitle}
           </p>
           
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] rounded-lg font-semibold transition-all transform hover:scale-105">
+            <button className="px-8 py-4 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold transition-all transform hover:scale-105">
               تواصل معنا الآن
             </button>
-            <button className="px-8 py-4 border-2 border-[#EDC870] hover:bg-[#EDC870] hover:text-[#004A99] rounded-lg font-semibold transition-all">
+            <button className="px-8 py-4 border-2 border-yellow-300 hover:bg-yellow-300 hover:text-yellow-900 rounded-lg font-semibold transition-all">
               اطلع على خدماتنا
             </button>
           </div>
@@ -54,34 +54,34 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center group">
-              <div className="bg-[#EDC870] w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <Users className="h-10 w-10 text-[#004A99]" />
+              <div className="bg-gradient-to-br from-yellow-50 to-indigo-50 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Users className="h-10 w-10 text-yellow-600" />
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-[#004A99] mb-2">{TEXTS.about.stats.clients.number}</div>
+              <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">{TEXTS.about.stats.clients.number}</div>
               <div className="text-gray-600 font-medium">{TEXTS.about.stats.clients.label}</div>
             </div>
             
             <div className="text-center group">
-              <div className="bg-[#EDC870] w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <Calendar className="h-10 w-10 text-[#004A99]" />
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Calendar className="h-10 w-10 text-green-600" />
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-[#004A99] mb-2">{TEXTS.about.stats.experience.number}</div>
+              <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">{TEXTS.about.stats.experience.number}</div>
               <div className="text-gray-600 font-medium">{TEXTS.about.stats.experience.label}</div>
             </div>
             
             <div className="text-center group">
-              <div className="bg-[#EDC870] w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <Award className="h-10 w-10 text-[#004A99]" />
+              <div className="bg-gradient-to-br from-purple-50 to-violet-50 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Award className="h-10 w-10 text-purple-600" />
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-[#004A99] mb-2">{TEXTS.about.stats.quality.number}</div>
+              <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">{TEXTS.about.stats.quality.number}</div>
               <div className="text-gray-600 font-medium">{TEXTS.about.stats.quality.label}</div>
             </div>
             
             <div className="text-center group">
-              <div className="bg-[#EDC870] w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <Clock className="h-10 w-10 text-[#004A99]" />
+              <div className="bg-gradient-to-br from-orange-50 to-red-50 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Clock className="h-10 w-10 text-orange-600" />
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-[#004A99] mb-2">{TEXTS.about.stats.support.number}</div>
+              <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">{TEXTS.about.stats.support.number}</div>
               <div className="text-gray-600 font-medium">{TEXTS.about.stats.support.label}</div>
             </div>
           </div>
@@ -89,17 +89,17 @@ const About = () => {
       </section>
 
       {/* About Content */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div>
-                <span className="inline-block px-4 py-2 bg-[#EDC870] text-[#004A99] rounded-full text-sm font-medium mb-4">
+                <span className="inline-block px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium mb-4">
                   {TEXTS.about.sectionTitle}
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
                   خبرة تراكمية في خدمة
-                  <span className="text-[#004A99]"> أهدافكم المالية</span>
+                  <span className="text-yellow-600"> أهدافكم المالية</span>
                 </h2>
               </div>
               
@@ -139,32 +139,32 @@ const About = () => {
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center p-6 bg-[#EDC870] rounded-2xl">
-                    <Globe className="h-12 w-12 text-[#004A99] mx-auto mb-4" />
-                    <h4 className="font-bold text-[#004A99] mb-2">خدمات شاملة</h4>
-                    <p className="text-sm text-[#004A99]">جميع الخدمات المحاسبية في مكان واحد</p>
+                  <div className="text-center p-6 bg-gradient-to-br from-yellow-50 to-indigo-50 rounded-2xl">
+                    <Globe className="h-12 w-12 text-yellow-600 mx-auto mb-4" />
+                    <h4 className="font-bold text-gray-800 mb-2">خدمات شاملة</h4>
+                    <p className="text-sm text-gray-600">جميع الخدمات المحاسبية في مكان واحد</p>
                   </div>
-                  <div className="text-center p-6 bg-[#EDC870] rounded-2xl">
-                    <Award className="h-12 w-12 text-[#004A99] mx-auto mb-4" />
-                    <h4 className="font-bold text-[#004A99] mb-2">جودة عالية</h4>
-                    <p className="text-sm text-[#004A99]">معايير جودة دولية معتمدة</p>
+                  <div className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
+                    <Award className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                    <h4 className="font-bold text-gray-800 mb-2">جودة عالية</h4>
+                    <p className="text-sm text-gray-600">معايير جودة دولية معتمدة</p>
                   </div>
-                  <div className="text-center p-6 bg-[#EDC870] rounded-2xl">
-                    <Users className="h-12 w-12 text-[#004A99] mx-auto mb-4" />
-                    <h4 className="font-bold text-[#004A99] mb-2">فريق خبير</h4>
-                    <p className="text-sm text-[#004A99]">محاسبون معتمدون ومؤهلون</p>
+                  <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl">
+                    <Users className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                    <h4 className="font-bold text-gray-800 mb-2">فريق خبير</h4>
+                    <p className="text-sm text-gray-600">محاسبون معتمدون ومؤهلون</p>
                   </div>
-                  <div className="text-center p-6 bg-[#EDC870] rounded-2xl">
-                    <Clock className="h-12 w-12 text-[#004A99] mx-auto mb-4" />
-                    <h4 className="font-bold text-[#004A99] mb-2">سرعة الإنجاز</h4>
-                    <p className="text-sm text-[#004A99]">تسليم في المواعيد المحددة</p>
+                  <div className="text-center p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl">
+                    <Clock className="h-12 w-12 text-orange-600 mx-auto mb-4" />
+                    <h4 className="font-bold text-gray-800 mb-2">سرعة الإنجاز</h4>
+                    <p className="text-sm text-gray-600">تسليم في المواعيد المحددة</p>
                   </div>
                 </div>
               </div>
               
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#EDC870]/30 rounded-full"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#004A99]/30 rounded-full"></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-200/30 rounded-full"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-indigo-200/30 rounded-full"></div>
             </div>
           </div>
         </div>
@@ -174,25 +174,25 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 bg-[#EDC870] text-[#004A99] rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium mb-4">
               رؤيتنا ورسالتنا
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
               نحو مستقبل مالي أكثر
-              <span className="text-[#004A99]"> وضوحاً واستقراراً</span>
+              <span className="text-yellow-600"> وضوحاً واستقراراً</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="relative group">
-              <div className="bg-[#004A99] p-8 rounded-3xl text-white shadow-2xl transform group-hover:scale-105 transition-all duration-300">
+              <div className="bg-gradient-to-br from-yellow-600 to-indigo-700 p-8 rounded-3xl text-white shadow-2xl transform group-hover:scale-105 transition-all duration-300">
                 <div className="flex items-center mb-6">
-                  <div className="bg-[#EDC870]/20 p-4 rounded-2xl ml-4">
-                    <Eye className="h-8 w-8 text-[#EDC870]" />
+                  <div className="bg-white/20 p-4 rounded-2xl ml-4">
+                    <Eye className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold">{TEXTS.about.vision.title}</h3>
                 </div>
-                <p className="text-[#EDC870] leading-relaxed text-lg">
+                <p className="text-yellow-100 leading-relaxed text-lg">
                   {TEXTS.about.vision.description}
                 </p>
                 {/* Vision background image */}
@@ -204,18 +204,18 @@ const About = () => {
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#EDC870]/30 rounded-full -z-10"></div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-yellow-200/30 rounded-full -z-10"></div>
             </div>
 
             <div className="relative group">
-              <div className="bg-[#EDC870] p-8 rounded-3xl text-[#004A99] shadow-2xl transform group-hover:scale-105 transition-all duration-300">
+              <div className="bg-gradient-to-br from-indigo-600 to-yellow-700 p-8 rounded-3xl text-white shadow-2xl transform group-hover:scale-105 transition-all duration-300">
                 <div className="flex items-center mb-6">
-                  <div className="bg-[#004A99]/20 p-4 rounded-2xl ml-4">
-                    <Target className="h-8 w-8 text-[#004A99]" />
+                  <div className="bg-white/20 p-4 rounded-2xl ml-4">
+                    <Target className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold">{TEXTS.about.mission.title}</h3>
                 </div>
-                <p className="text-[#004A99] leading-relaxed text-lg">
+                <p className="text-indigo-100 leading-relaxed text-lg">
                   {TEXTS.about.mission.description}
                 </p>
                 {/* Mission background image */}
@@ -227,22 +227,22 @@ const About = () => {
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[#004A99]/30 rounded-full -z-10"></div>
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-purple-200/30 rounded-full -z-10"></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 bg-[#EDC870] text-[#004A99] rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium mb-4">
               {TEXTS.about.valuesTitle}
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
               القيم التي نؤمن بها
-              <span className="text-[#004A99]"> ونعمل وفقاً لها</span>
+              <span className="text-yellow-600"> ونعمل وفقاً لها</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">{TEXTS.about.valuesSubtitle}</p>
           </div>
@@ -250,10 +250,10 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group">
               <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105 h-full">
-                <div className="bg-[#EDC870] w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Award className="h-10 w-10 text-[#004A99]" />
+                <div className="bg-gradient-to-br from-yellow-100 to-indigo-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Award className="h-10 w-10 text-yellow-600" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#004A99] mb-4 text-center">{TEXTS.about.values.excellence.title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">{TEXTS.about.values.excellence.title}</h3>
                 <p className="text-gray-600 leading-relaxed text-center">
                   {TEXTS.about.values.excellence.description}
                 </p>
@@ -262,10 +262,10 @@ const About = () => {
 
             <div className="group">
               <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105 h-full">
-                <div className="bg-[#EDC870] w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Users className="h-10 w-10 text-[#004A99]" />
+                <div className="bg-gradient-to-br from-green-100 to-emerald-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Users className="h-10 w-10 text-green-600" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#004A99] mb-4 text-center">{TEXTS.about.values.collaboration.title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">{TEXTS.about.values.collaboration.title}</h3>
                 <p className="text-gray-600 leading-relaxed text-center">
                   {TEXTS.about.values.collaboration.description}
                 </p>
@@ -274,10 +274,10 @@ const About = () => {
 
             <div className="group">
               <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105 h-full">
-                <div className="bg-[#EDC870] w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Target className="h-10 w-10 text-[#004A99]" />
+                <div className="bg-gradient-to-br from-purple-100 to-violet-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Target className="h-10 w-10 text-purple-600" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#004A99] mb-4 text-center">{TEXTS.about.values.commitment.title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">{TEXTS.about.values.commitment.title}</h3>
                 <p className="text-gray-600 leading-relaxed text-center">
                   {TEXTS.about.values.commitment.description}
                 </p>
@@ -288,10 +288,10 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#004A99] relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-yellow-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#EDC870]/10 rounded-full -translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#004A99]/10 rounded-full translate-x-48 translate-y-48"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-400/10 rounded-full -translate-x-48 -translate-y-48"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full translate-x-48 translate-y-48"></div>
         
         {/* CTA Background Image */}
         <div className="absolute inset-0">
@@ -306,15 +306,15 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             هل أنت مستعد لبدء رحلتك معنا؟
           </h2>
-          <p className="text-xl text-[#EDC870] mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-yellow-100 mb-12 max-w-2xl mx-auto">
             انضم إلى عملائنا الراضين واحصل على استشارة مجانية اليوم
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-[#EDC870] text-[#004A99] hover:bg-[#D4B564] rounded-lg font-bold text-lg transition-all transform hover:scale-105">
+            <button className="px-8 py-4 bg-white text-yellow-900 hover:bg-gray-100 rounded-lg font-bold text-lg transition-all transform hover:scale-105">
               احصل على استشارة مجانية
             </button>
-            <button className="px-8 py-4 border-2 border-[#EDC870] text-[#EDC870] hover:bg-[#EDC870] hover:text-[#004A99] rounded-lg font-bold text-lg transition-all">
+            <button className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-yellow-900 rounded-lg font-bold text-lg transition-all">
               تواصل معنا الآن
             </button>
           </div>

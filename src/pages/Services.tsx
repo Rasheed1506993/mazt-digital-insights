@@ -80,7 +80,7 @@ const workSteps = [
       "استعراض وتحليل دليل الحسابات.",
       "تحليل الوضع الضريبي للمنشأة.",
     ],
-    bgColor: "#EDC870",
+    bgColor: "#edc870",
   },
   {
     number: "2",
@@ -91,7 +91,7 @@ const workSteps = [
       "استلام المستندات وفحصها بدقة.",
       "إعداد تقارير شاملة وموثوقة",
     ],
-    bgColor: "#004A99",
+    bgColor: "#423f42",
   },
   {
     number: "3",
@@ -102,7 +102,7 @@ const workSteps = [
       "وضع خطة ضريبية واضحة لتحقيق الأداء الأمثل.",
       "تحديد الأهداف من كل تقرير محاسبي وضريبي.",
     ],
-    bgColor: "#EDC870",
+    bgColor: "#edc870",
   },
   {
     number: "4",
@@ -113,7 +113,7 @@ const workSteps = [
       "توضيح ومناقشة النقاط المؤثرة.",
       "تقديم استشارة مخصصة لتطوير الأعمال",
     ],
-    bgColor: "#004A99",
+    bgColor: "#423f42",
   },
 ];
 
@@ -200,7 +200,7 @@ const Services = () => {
               >
                 <Link
                   to="/contact"
-                  className="inline-block bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+                  className="inline-block bg-[#edc870] hover:bg-[#d4b55e] text-[#423f42] font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
                 >
                   أطلب الخدمة الآن
                 </Link>
@@ -243,7 +243,7 @@ const Services = () => {
                 <Link to={service.href} className="block h-full">
                   <div className="flex flex-col items-center text-center h-full">
                     <motion.div
-                      className="w-16 h-16 sm:w-20 sm:h-20 bg-[#EDC870] rounded-full flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-[#D4B564] transition-colors duration-300"
+                      className="w-16 h-16 sm:w-20 sm:h-20 bg-[#edc870] rounded-full flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-[#d4b55e] transition-colors duration-300"
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
                     >
@@ -254,7 +254,7 @@ const Services = () => {
                       />
                     </motion.div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-[#004A99] mb-3 sm:mb-4 group-hover:text-[#EDC870] transition-colors duration-300 leading-tight">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#423f42] mb-3 sm:mb-4 group-hover:text-[#edc870] transition-colors duration-300 leading-tight">
                       {service.title}
                     </h3>
 
