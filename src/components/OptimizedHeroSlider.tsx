@@ -3,14 +3,9 @@ import { useState, useEffect, useCallback, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import LazyImage from "./LazyImage"
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Placeholder Link component for this environment
-const Link = ({ to, children }) => (
-  <a href={to} onClick={(e) => e.preventDefault()}>
-    {children}
-  </a>
-);
 
 
 const slides = [
