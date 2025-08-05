@@ -42,7 +42,7 @@ const LoadingFallback = ({ height = "h-64 sm:h-80 md:h-96", bgColor = "bg-gray-1
 
 const Home = () => {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden rtl">
       
       <motion.main 
         variants={containerVariants} 

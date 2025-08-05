@@ -40,7 +40,7 @@ const Contact = () => {
     <div className="min-h-screen" dir="rtl">
       {/* Hero Section */}
       <section 
-      className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16"
+      className="bg-[#004A99] text-white py-16"
               style={{
     backgroundImage: "url('/lovable-uploads/slid-min-2-scaled.webp')",
     backgroundSize: 'cover',
@@ -50,7 +50,7 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">اتصل بنا</h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl text-[#EDC870] max-w-3xl mx-auto">
               نحن هنا لمساعدتك - تواصل معنا للحصول على استشارة مجانية أو لمناقشة احتياجاتك
             </p>
           </div>
@@ -67,41 +67,41 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-[#edc870] p-3 rounded-lg">
-                    <Phone className="h-6 w-6 text-white" />
+                  <div className="bg-[#EDC870] p-3 rounded-lg">
+                    <Phone className="h-6 w-6 text-[#004A99]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">رقم الهاتف</h3>
+                    <h3 className="text-lg font-semibold text-[#004A99] mb-1">رقم الهاتف</h3>
                     <p className="text-gray-600" dir="ltr">0555069372</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-[#edc870] p-3 rounded-lg">
-                    <Mail className="h-6 w-6 text-white" />
+                  <div className="bg-[#EDC870] p-3 rounded-lg">
+                    <Mail className="h-6 w-6 text-[#004A99]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">البريد الإلكتروني</h3>
+                    <h3 className="text-lg font-semibold text-[#004A99] mb-1">البريد الإلكتروني</h3>
                     <p className="text-gray-600">info@aldikka.com</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-[#edc870] p-3 rounded-lg">
-                    <MapPin className="h-6 w-6 text-white" />
+                  <div className="bg-[#EDC870] p-3 rounded-lg">
+                    <MapPin className="h-6 w-6 text-[#004A99]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">العنوان</h3>
+                    <h3 className="text-lg font-semibold text-[#004A99] mb-1">العنوان</h3>
                     <p className="text-gray-600">مكة المكرمة - الشوقية - مقابل كنتكي</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4 space-x-reverse">
-                  <div className="bg-[#edc870] p-3 rounded-lg">
-                    <Clock className="h-6 w-6 text-white" />
+                  <div className="bg-[#EDC870] p-3 rounded-lg">
+                    <Clock className="h-6 w-6 text-[#004A99]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">ساعات العمل</h3>
+                    <h3 className="text-lg font-semibold text-[#004A99] mb-1">ساعات العمل</h3>
                     <p className="text-gray-600">
                       الأحد - الخميس: 8:00 ص - 5:00 م
                       <br />
@@ -133,11 +133,11 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-8">أرسل لنا رسالة</h2>
+              <h2 className="text-3xl font-bold text-[#004A99] mb-8">أرسل لنا رسالة</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-[#004A99] mb-2">
                     الاسم الكامل *
                   </label>
                   <input
@@ -147,13 +147,13 @@ const Contact = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#004A99] focus:border-[#004A99]"
                     placeholder="أدخل اسمك الكامل"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-[#004A99] mb-2">
                     البريد الإلكتروني *
                   </label>
                   <input
@@ -163,13 +163,13 @@ const Contact = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#004A99] focus:border-[#004A99]"
                     placeholder="أدخل بريدك الإلكتروني"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="phone" className="block text-sm font-medium text-[#004A99] mb-2">
                     رقم الهاتف
                   </label>
                   <input
@@ -178,13 +178,13 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#004A99] focus:border-[#004A99]"
                     placeholder="أدخل رقم هاتفك"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-[#004A99] mb-2">
                     موضوع الرسالة *
                   </label>
                   <select
@@ -193,7 +193,7 @@ const Contact = () => {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#004A99] focus:border-[#004A99]"
                   >
                     <option value="">اختر موضوع الرسالة</option>
                     <option value="consultation">استشارة مجانية</option>
@@ -205,7 +205,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-[#004A99] mb-2">
                     نص الرسالة *
                   </label>
                   <textarea
@@ -215,14 +215,14 @@ const Contact = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#004A99] focus:border-[#004A99]"
                     placeholder="اكتب رسالتك هنا..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-[#edc870] hover:bg-[#edc870] text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2 space-x-reverse"
+                  className="w-full bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2 space-x-reverse"
                 >
                   <Send className="h-5 w-5" />
                   <span>إرسال الرسالة</span>
