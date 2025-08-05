@@ -1,346 +1,417 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { TEXTS } from '../constants/texts';
 
-const AccountRegistration = () => {
+// A single function to replace the Lucide icons with inline SVGs
+const LucideIcon = ({ iconName, className }) => {
+  const icons = {
+    CalendarCheck: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+    ),
+    BookOpen: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    ),
+    ClipboardEdit: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 20h.01"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/><path d="M12 10l-2 2 4 4 2-2 2-2-4-4z"/></svg>
+    ),
+    ClipboardX: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/><path d="m10 10 4 4"/><path d="m14 10-4 4"/></svg>
+    ),
+    FileText: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+    ),
+    Lightbulb: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 6c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/><path d="M11 17v5"/><path d="M12 14v3"/></svg>
+    ),
+    LineChart: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 3v18h18"/><path d="m18 6-7 7-5-5-4 4"/></svg>
+    ),
+    FilePieChart: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M10.5 17.5 14 14l-3.5-3.5c2.2-.2 4.1 1.7 3.9 3.9-.2 2.2-2.1 4.1-4.3 3.9"/><path d="M14 14l-3.5 3.5c-2.2.2-4.1-1.7-3.9-3.9.2-2.2 2.1-4.1 4.3-3.9"/></svg>
+    ),
+  };
+  return icons[iconName] || null;
+};
+
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: "easeOut" },
+}
+
+const fadeInLeft = {
+  initial: { opacity: 0, x: -60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 0.8, ease: "easeOut" },
+}
+
+const fadeInRight = {
+  initial: { opacity: 0, x: 60 },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 0.8, ease: "easeOut" },
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const cardVariants = {
+  initial: { opacity: 0, y: 50, scale: 0.9 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+  hover: {
+    y: -10,
+    scale: 1.05,
+    transition: { duration: 0.3, ease: "easeInOut" },
+  },
+}
+
+const iconVariants = {
+  initial: { scale: 0, rotate: -180 },
+  animate: {
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
+  },
+  hover: {
+    scale: 1.2,
+    rotate: 360,
+    transition: { duration: 0.4, ease: "easeInOut" },
+  },
+}
+
+const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
   return (
-    <div className="min-h-screen bg-white" dir="rtl">
-    {/* Hero Section */}
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+export default function AccountRegistration() {
+  return (
+    <div className="min-h-screen bg-[#F9FAFB]" dir="rtl">
+      {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat"
-      
         style={{
-  backgroundImage: `url(${import.meta.env.BASE_URL}images/AccountRegistration.webp)`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-}}
-
+          backgroundImage: `url('/images/AccountRegistration.webp')`, // Placeholder image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-[#004A99]/70"></div> {/* Primary Blue with increased transparency */}
         <div className="container mx-auto px-4 h-full flex items-center">
-          <div className="relative z-10 text-white max-w-2xl mr-auto py-12 md:py-24 px-4 md:px-[15%]">
-            <div className="text-sm mb-2">خدمة</div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">تسجيل الحسابات</h1>
-            <p className="text-sm md:text-lg mb-6 md:mb-8 leading-relaxed">
-              جزءًا أساسيًا من خدمات المازن المحاسبية، حيث يقوم فريقنا المتخصص بتنفيذ عملية تسجيل دقيقة ومفصلة لكل
-              المعاملات المالية التي تحدث في أي مشروع أو منشأة تجارية، عبر جمع وتوثيق جميع النقاط المحاسبية الرئيسية
-              للمشروع، مثل المبيعات، المشتريات، الإيرادات، والمصروفات بدقة. وفقًا للتواريخ والمبالغ المحددة، والتأكد من
-              أن جميع المعاملات مسجلة ومحدثة بشكل دوري.
-            </p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 md:px-8 py-3 rounded-lg transition-colors w-full sm:w-auto">
-              أطلب الخدمة الآن
-            </button>
-          </div>
+          <motion.div
+            className="relative z-10 text-white max-w-2xl mr-auto py-12 md:py-24 px-4 md:px-[15%]"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          >
+            <motion.div
+              className="text-sm mb-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {TEXTS.accountRegistration.hero.serviceLabel}
+            </motion.div>
+            <motion.h1
+              className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight md:leading-[58px]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
+              {TEXTS.accountRegistration.hero.title}
+            </motion.h1>
+            <motion.p
+              className="text-sm md:text-lg mb-6 md:mb-8 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              {TEXTS.accountRegistration.hero.description}
+            </motion.p>
+            <motion.button
+              className="bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] px-6 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {TEXTS.accountRegistration.hero.button}
+            </motion.button>
+          </motion.div>
         </div>
       </section>
 
       <main className="container mx-auto py-12">
         {/* Services Section */}
-        <section className="mb-16">
+        <AnimatedSection className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">استشـارات تسجيل الحسابات</h2>
+            <h2 className="text-4xl font-bold text-[#1C1C1C] mb-4">{TEXTS.accountRegistration.servicesSection.title}</h2>
             <div className="max-w-4xl mx-auto">
-              <p className="text-lg text-gray-700 mb-4">
-                <strong>الدعم المثالي الذي تحتاجه لنجاح الأعمال</strong>
+              <p className="text-lg text-[#6B7280] mb-4">
+                <strong>{TEXTS.accountRegistration.servicesSection.introStrong1}</strong>
               </p>
-              <p className="text-lg text-gray-700">
+              <p className="text-lg text-[#6B7280]">
                 <strong>
-                  تهدف هذه الخدمات إلى تحديد الوضع المالي للمنشآت وتوفير رؤية دقيقة تُسهم في اتخاذ القرارات الاستراتيجية،
-                  و تشمل:
+                  {TEXTS.accountRegistration.servicesSection.introStrong2}
                 </strong>
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
-            <div className="bg-yellow-100 p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/calendar_2153359-50x50.png"
-                  alt="Calendar"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">تسجيل العمليات المالية اليومية</h3>
-              <p className="text-gray-700 text-sm">
-                يتم تنفيذ عمليات مسك الدفاتر بدقة، حيث يتم تسجيل جميع العمليات المالية اليومية بمراعاة المعايير
-                المحاسبية المعترف بها.
-              </p>
-            </div>
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {TEXTS.accountRegistration.servicesSection.cards1.map((service, index) => (
+              <motion.div
+                key={index}
+                className="bg-[#EDC870] p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-60 flex flex-col justify-center cursor-pointer"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <motion.div className="mb-4" variants={iconVariants}>
+                  <LucideIcon iconName={service.icon} className="w-12 h-12 mx-auto text-[#004A99]" />
+                </motion.div>
+                <h3 className="text-lg font-semibold text-[#004A99] mb-3">{service.title}</h3>
+                <p className="text-[#004A99] text-sm">{service.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            <div className="bg-yellow-100 p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/accounting_11735212-50x50.png"
-                  alt="Accounting"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">تأسيس دليل الحسابات</h3>
-              <p className="text-gray-700 text-sm">
-                نقوم إنشاء دليل حسابات متكامل يعكس هيكل الحسابات المالية بشكل دقيق ومنظم.
-              </p>
-            </div>
-
-            <div className="bg-yellow-100 p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/project_2679418-1-50x50.png"
-                  alt="Project"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">إعـــــداد خطة عمل مخصصة للعميل</h3>
-              <p className="text-gray-700 text-sm">
-                وضع خطة عمل مخصصة تشمل الخدمات المحاسبية المحددة التي سيتم تقديمها، مما يسهم في توجيه الجهود نحو تحقيق
-                الأهداف.
-              </p>
-            </div>
-
-            <div className="bg-yellow-100 p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/calculator_2886257-50x50.png"
-                  alt="Calculator"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">تحديــد الاحتياج المحاسبي لكل عميل</h3>
-              <p className="text-gray-700 text-sm">
-                يبدأ العمل بتحليل احتياجات العميل وفهم المتطلبات المحاسبية، ليتم تحديد الخدمات المناسبة والتي تضمن تلبية
-                توقعاته وتحقيق أهدافه.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-yellow-100 p-6 rounded-lg text-center h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/planning_10787077-50x50.png"
-                  alt="Planning"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">شرح التقارير المالية</h3>
-              <p className="text-gray-700 text-sm">
-                يتم توضيح التقارير المالية بشكل واضح للعميل، مما يساعده على فهم الوضع المالي لمنشأته وكيفية التعامل معه.
-              </p>
-            </div>
-
-            <div className="bg-yellow-100 p-6 rounded-lg text-center h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/ask_1713106-50x50.png"
-                  alt="Ask"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">تقديم الاستشارات المحاسبية</h3>
-              <p className="text-gray-700 text-sm">
-                نقوم بتقديم استشارات محاسبية فعّالة لمساعدة العميل في اتخاذ قرارات مستنيرة وتحسين أدائه المالي على مدى
-                الطويل.
-              </p>
-            </div>
-
-            <div className="bg-yellow-100 p-6 rounded-lg text-center h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/budget-4-50x50.png"
-                  alt="Budget"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">تحليل المؤشرات المالية</h3>
-              <p className="text-gray-700 text-sm">
-                نقوم بإجراء تحليل دقيق للمؤشرات المالية لفهم أداء العميل والتنبؤ بالتطورات المستقبلية.
-              </p>
-            </div>
-
-            <div className="bg-yellow-100 p-6 rounded-lg text-center h-60">
-              <div className="mb-4">
-                <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/report_10740920-50x50.png"
-                  alt="Report"
-                  className="w-12 h-12 mx-auto"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">إعداد التقارير المالية و الضريبية</h3>
-              <p className="text-gray-700 text-sm">
-                نقوم بإعداد تقارير مالية دقيقة وشاملة، بالإضافة إلى التقارير الضريبية اللازمة للامتثال للتشريعات
-                المحلية.
-              </p>
-            </div>
-          </div>
-        </section>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {TEXTS.accountRegistration.servicesSection.cards2.map((service, index) => (
+              <motion.div
+                key={index}
+                className="bg-[#EDC870] p-6 rounded-lg text-center h-60 flex flex-col justify-center cursor-pointer"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <motion.div className="mb-4" variants={iconVariants}>
+                  <LucideIcon iconName={service.icon} className="w-12 h-12 mx-auto text-[#004A99]" />
+                </motion.div>
+                <h3 className="text-lg font-semibold text-[#004A99] mb-3">{service.title}</h3>
+                <p className="text-[#004A99] text-sm">{service.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatedSection>
 
         {/* Bookkeeping Section */}
-        <section
-          className="py-12 md:py-16 bg-gray-100 bg-cover bg-center bg-no-repeat mb-12 md:mb-16"
+        <AnimatedSection
+          className="py-12 md:py-16 bg-[#F9FAFB] bg-cover bg-center bg-no-repeat mb-12 md:mb-16"
           style={{
-            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/h2_about_shape03.png')",
+            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/h2_about_shape03.png')", // Placeholder image
           }}
         >
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="order-2 lg:order-1">
+              <motion.div
+                className="order-2 lg:order-1"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
                 <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/1-3.webp"
+                  src="https://aztc.sa/wp-content/uploads/2024/01/1-3.webp" // Placeholder image
                   alt="Bookkeeping"
                   className="w-full rounded-lg shadow-lg"
                 />
-              </div>
-              <div className="text-right order-1 lg:order-2">
-                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">مسك الدفاتر المحاسبيــة</h2>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  مسك الدفاتر المحاسبية هو عملية تسجيل يومي وتفصيلي لكل المعاملات المالية في أي مشروع أو منشأة، سواء
-                  كانت مبيعات، مشتريات، إيرادات، أو مصروفات، وفقًا للمبادئ المحاسبية. يتمثل هذا الجهد في رصد دقيق لكل
-                  حركة مالية لضمان شمولية ودقة المعلومات.
+              </motion.div>
+              <motion.div
+                className="text-right order-1 lg:order-2"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-2xl md:text-4xl font-bold text-[#1C1C1C] mb-4 md:mb-6">{TEXTS.accountRegistration.bookkeepingSection.title}</h2>
+                <p className="text-base md:text-lg text-[#6B7280] leading-relaxed">
+                  {TEXTS.accountRegistration.bookkeepingSection.description}
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Importance Section */}
-        <section
-          className="py-16 bg-cover bg-center bg-no-repeat mb-16"
+        <AnimatedSection
+          className="py-16 bg-[#004A99] bg-cover bg-center bg-no-repeat mb-16"
           style={{
-            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/222.png')",
+            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/222.png')", // Placeholder image
           }}
         >
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-right">
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">أهمية مسك الدفاتر المحاسبية</h2>
-                <div className="text-lg text-gray-700 space-y-4">
-                  <p>بفضل التنفيذ الدقيق لعمليات مسك الدفاتر المحاسبية، تصبح المؤسسات قادرة على إرساء أسس مالية قوية</p>
+              <motion.div
+                className="text-right"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl font-bold text-white mb-6">
+                  {TEXTS.accountRegistration.importanceSection.title}
+                </h2>
+                <div className="text-lg text-white/90 space-y-4">
+                  <p>{TEXTS.accountRegistration.importanceSection.intro}</p>
 
-                  <div>
-                    <h4 className="font-semibold">• تسجيل العمليات اليومية عند حدوثها مباشرة:</h4>
-                    <p>لتوثيق وتسجيل كل عملية مالية فور حدوثها، مما يضمن دقة السجلات</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold">• معرفة المنشأة أصولها والتزاماتها:</h4>
-                    <p>مما يوفر للمنشأة رؤية فورية حول أصولها والالتزامات المالية المترتبة عليها.</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold">• تقديم تحليل واضح للحسابات:</h4>
-                    <p>مما يساعد في فهم نتائج المشروع وتحديد ما إذا كانت هناك ربح أو خسارة.</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold">• تقصي الأسباب المؤدية إلى الخسارة وتجنبها:</h4>
-                    <p>من خلال تحليل البيانات المحاسبية، وسرعة اتخاذ إجراءات لتجنبها</p>
-                  </div>
+                  {TEXTS.accountRegistration.importanceSection.items.map((item, index) => (
+                    <div key={index}>
+                      <h4 className="font-semibold">• {item.title}</h4>
+                      <p>{item.description}</p>
+                    </div>
+                  ))}
                 </div>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
                 <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/2-3-scaled.webp"
+                  src="https://aztc.sa/wp-content/uploads/2024/01/2-3-scaled.webp" // Placeholder image
                   alt="Financial Analysis"
                   className="w-full rounded-lg shadow-lg"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Tax Study Section */}
-        <section
-          className="py-16 bg-gray-100 bg-cover bg-center bg-no-repeat mb-16"
+        <AnimatedSection
+          className="py-16 bg-[#F9FAFB] bg-cover bg-center bg-no-repeat mb-16"
           style={{
-            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/h2_about_shape03.png')",
+            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/h2_about_shape03.png')", // Placeholder image
           }}
         >
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
                 <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/3-2-scaled.webp"
+                  src="https://aztc.sa/wp-content/uploads/2024/01/3-2-scaled.webp" // Placeholder image
                   alt="Tax Study"
                   className="w-full rounded-lg shadow-lg"
                 />
-              </div>
-              <div className="text-right">
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">دراسة الوضع الزكوي والضريبي للمنشأة</h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  تشمل خدماتنا المحاسبية التي تساعد في دراسة الوضع الزكوي والضريبي للمنشأة تحليل البيانات المالية،
-                  وتحديد الالتزامات الضريبية والزكوية المترتبة عليها، حيث نقوم بإعداد القوائم المالية والتي تتضمن
-                  البيانات المالية الأساسية، مثل المركز المالي والنتائج المالية، مما يساعد على تحديد الالتزامات الضريبية
-                  والزكوية المترتبة على هذه البيانات؛ لنقدم في النهاية الإقرارات الضريبية والزكوية للمنشأة.
+              </motion.div>
+              <motion.div
+                className="text-right"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl font-bold text-[#1C1C1C] mb-6">{TEXTS.accountRegistration.taxStudySection.title}</h2>
+                <p className="text-lg text-[#6B7280] leading-relaxed">
+                  {TEXTS.accountRegistration.taxStudySection.description}
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Objections Section */}
-        <section
-          className="py-16 bg-cover bg-center bg-no-repeat mb-16"
+        <AnimatedSection
+          className="py-16 bg-[#004A99] bg-cover bg-center bg-no-repeat mb-16"
           style={{
-            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/222.png')",
+            backgroundImage: "url('https://aztc.sa/wp-content/uploads/2024/01/222.png')", // Placeholder image
           }}
         >
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-right">
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  إعداد وتقديم الاعتراضات
-                  <br />
-                  (على عمليات الربط الزكوي والضريبي)
+              <motion.div
+                className="text-right"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl font-bold text-white mb-6">
+                  {TEXTS.accountRegistration.objectionsSection.title}
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  إعداد الاعتراضات يشمل فحص التفاصيل والتحقق من صحة البيانات المقدمة، وإعداد الوثائق اللازمة لدعم
-                  الاعتراض. بالإضافة إلى ذلك، نقوم بتقديم الاعتراضات بشكل فعّال وفي الوقت المناسب إلى الجهات المختصة، مما
-                  يساعد عملائنا على حل الخلافات بشكل فوري وضمان امتثالهم للتشريعات الزكوية والضريبية المحلية. تلك
-                  الخدمات تعكس التزامنا بتقديم حلول شاملة و مخصصة؛ لضمان تلبية احتياجات عملائنا وحمايتهم من المخاطر
-                  القانونية والضريبية.
+                <p className="text-lg text-white/90 leading-relaxed">
+                  {TEXTS.accountRegistration.objectionsSection.description}
                 </p>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
                 <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/4-2-scaled.webp"
+                  src="https://aztc.sa/wp-content/uploads/2024/01/4-2-scaled.webp" // Placeholder image
                   alt="Objections"
                   className="w-full rounded-lg shadow-lg"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Advanced Systems Section */}
-        <section className="py-16 bg-gray-100">
+        <AnimatedSection className="py-16 bg-[#F9FAFB]">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-right">
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">أنظمة محاسبية متقدمة ومتكاملة</h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  يهدف توفير الأنظمة المحاسبية لدينا إلى تحقيق فعالية أكبر في إدارة المال وتحسين قدرة الشركة على اتخاذ
-                  قرارات استراتيجية مستنيرة؛ لذا نسعى جاهدين لتحقيق التكامل بين التقنية والأعمال المحاسبية لتحقيق أقصى
-                  قدر من الكفاءة والدقة. نبدأ بتحليل احتياجات كل عميل بعناية لضمان توفير الحلول المناسبة، سواء كانت نظام
-                  محاسبة محلي أو على السحابة. تقوم خدماتنا بتوفير نظم تتناسب مع حجم وطبيعة العمل لدى المنشأة، بحيث نضمن
-                  لعملائنا التحكم الكامل في بياناتهم المالية، وتسهيل عمليات المراقبة.
+              <motion.div
+                className="text-right"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl font-bold text-[#1C1C1C] mb-6">{TEXTS.accountRegistration.advancedSystemsSection.title}</h2>
+                <p className="text-lg text-[#6B7280] leading-relaxed">
+                  {TEXTS.accountRegistration.advancedSystemsSection.description}
                 </p>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
                 <img
-                  src="https://aztc.sa/wp-content/uploads/2024/01/1-3.webp"
+                  src="https://aztc.sa/wp-content/uploads/2024/01/1-3.webp" // Placeholder image
                   alt="Advanced Systems"
                   className="w-full rounded-lg shadow-lg"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
       </main>
-
     </div>
   );
 };
-
-export default AccountRegistration;

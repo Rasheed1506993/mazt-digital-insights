@@ -1,31 +1,7 @@
-//src/components/StatsSection
-
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-
-const stats = [
-  {
-    number: 2500,
-    label: "استشارة تم تقديمها",
-    suffix: "+",
-  },
-  {
-    number: 150,
-    label: "عميل تم خدمته",
-    suffix: "+",
-  },
-  {
-    number: 2020,
-    label: "سنة التأسيس",
-    suffix: "",
-  },
-  {
-    number: 60,
-    label: "تقرير تم العمل به",
-    suffix: "+",
-  },
-];
+import { TEXTS } from '../constants/texts'; // Assuming texts.ts is in ../constants/
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -100,7 +76,8 @@ const StatsSection = () => {
   return (
     <section
       ref={ref}
-      className="py-16 md:py-24 bg-gradient-to-r from-[#1C1C1C] to-[#2C2C2C] text-white relative overflow-hidden"
+      className="py-16 md:py-24 bg-gradient-to-r from-[#004A99] to-[#003A7A] text-white relative overflow-hidden" // Applied primary blue gradient
+      dir="rtl" // Ensure RTL direction
     >
       {/* Noise texture background */}
       <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48cGF0dGVybk9JdD0iZ3JhaW4iIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNzUiIGN5PSI3NSIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTAiIHI9IjEiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjEiLz48Y2lyY2xlIGN4PSIxMCIgY3k9IjYwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iOTAiIGN5PSI0MCIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjZ3JhaW4pIi8+PC9yZWN0Pjwvc3ZnPg==')]"></div>
@@ -113,22 +90,20 @@ const StatsSection = () => {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
           {/* Left Content */}
-          <motion.div variants={textVariants} className="space-y-6">
+          <motion.div variants={textVariants} className="space-y-6 text-right"> {/* Aligned text to right */}
             <h2 className="text-3xl md:text-4xl font-bold">
-              أرقامنا تتحدث عن نفسها
+              {TEXTS.statsSection.title}
             </h2>
-            <p className="text-lg leading-relaxed">
-              نحن ملتزمون بتقديم استشارات الضريبة والزكاة بشكل متخصص، بهدف تعزيز
-              دقة العرض والإفصاح للقوائم المالية، وذلك من خلال تطبيق المعايير
-              الدولية المحاسبية المتبعة في المملكة العربية السعودية.
+            <p className="text-lg leading-relaxed text-white/90">
+              {TEXTS.statsSection.description}
             </p>
             <Link to="/contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#FFB300] hover:bg-[#E0A300] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold shadow-md"
+                className="bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] px-8 py-3 rounded-lg transition-all duration-300 font-semibold shadow-md" // Applied palette colors
               >
-                تواصل معنا
+                {TEXTS.statsSection.button}
               </motion.button>
             </Link>
           </motion.div>
@@ -138,14 +113,14 @@ const StatsSection = () => {
             variants={containerVariants}
             className="grid grid-cols-2 gap-4 sm:gap-6"
           >
-            {stats.map((stat, index) => (
+            {TEXTS.statsSection.stats.map((stat, index) => (
               <motion.div
                 key={index}
                 variants={statVariants}
                 whileHover="hover"
-                className="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 text-center"
+                className="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20 text-center shadow-lg" // Increased transparency and added shadow
               >
-                <div className="text-3xl md:text-4xl font-bold text-[#FFB300] mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-[#EDC870] mb-2"> {/* Applied accent color */}
                   <CountUpAnimation end={stat.number} duration={2500} />
                   {stat.suffix}
                 </div>

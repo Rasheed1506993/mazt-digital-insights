@@ -1,47 +1,27 @@
-//components/OptimizedHeroSlider
-import { useState, useEffect, useCallback, useMemo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import LazyImage from "./LazyImage"
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom';
+import { TEXTS } from '../constants/texts'; // Import TEXTS
 
-// Placeholder Link component for this environment
+// A single function to replace the Lucide icons with inline SVGs
+const LucideIcon = ({ iconName, className }) => {
+  const icons = {
+    ChevronLeft: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m15 18-6-6 6-6"/></svg>
+    ),
+    ChevronRight: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6"/></svg>
+    ),
+  };
+  return icons[iconName] || null;
+};
 
+// Placeholder LazyImage component for this environment
+const LazyImage = ({ src, alt, className, priority }) => {
+  return <img src={src} alt={alt} className={className} loading={priority ? "eager" : "lazy"} />;
+};
 
-const slides = [
-  {
-    id: 1,
-    title: "شركاء الدقة لخدمات الأعمال",
-    description:
-      "نساعد أصحاب المنشآت التجارية على إدارة عملياتهم المحاسبية بطرق تمكنهم من اتخاذ قرارات فعالة تساهم في زيادة مبيعاتهم ونمو أعمالهم من خلال مجموعة شاملة من الخدمات المحاسبية.",
-    image: "https://aztc.sa/wp-content/uploads/2021/08/wepik-export-20240112174456Clna.jpeg",
-    buttonText: "تواصل معنا",
-  },
-  {
-    id: 2,
-    title: "إستشارات ضريبة القيمة المضافة",
-    description:
-      "نقي اصحاب المنشئات التجارية من الغرامات المترتبة على الممارسات الضريبة الخاطئة من خلال تقديم الإقرارات الضريبة بالطريقة الصحيحة وفقا للوائح والأنظمة الضريبية المعمول بها في المملكة.",
-    image: "https://aztc.sa/wp-content/uploads/2024/01/wepik-export-20240112202807zxnZ.jpeg",
-    buttonText: "تواصل معنا",
-  },
-  {
-    id: 3,
-    title: "محاسبة التكاليف",
-    description:
-      "نساعد أصحاب المنشئات التجارية على تحديد التكاليف الفعلية للمنتجات والخدمات الخاصة بالنشاط التجاري لاتخاذ قرارات خاصة بالتسعير وإحتساب عدد الوحدات المطلوب بيعها للوصول الى نقطة التعادل.",
-    image: "https://aztc.sa/wp-content/uploads/2024/01/wepik-export-20240112202807zxnZ.jpeg",
-    buttonText: "تواصل معنا",
-  },
-  {
-    id: 4,
-    title: "تسجيل الحسابات",
-    description:
-      "نقوم بتنفيذ عملية تسجيل دقيقة ومفصلة لكل التعاملات المالية التي تحدث في النشاط التجاري لإصدار تقارير مالية تفصيلية تساعد أصحاب المنشئات التجارية على اتخاذ قرارات تساهم في زيادة ربحية ونمو النشاط التجاري",
-    image: "https://aztc.sa/wp-content/uploads/2021/08/wepik-export-20240112172525EaNB.jpeg",
-    buttonText: "تواصل معنا",
-  },
-]
+const slides = TEXTS.heroSlider.slides; // Get slides from TEXTS
 
 const slideVariants = {
   enter: (direction) => ({
@@ -58,7 +38,7 @@ const slideVariants = {
     x: direction < 0 ? 1000 : -1000,
     opacity: 0,
   }),
-}
+};
 
 const textVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -71,7 +51,7 @@ const textVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 const buttonVariants = {
   hidden: { opacity: 0, scale: 0.8 },
@@ -88,49 +68,54 @@ const buttonVariants = {
     scale: 1.05,
     transition: { duration: 0.2 },
   },
-}
+};
 
 export default function OptimizedHeroSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [direction, setDirection] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const currentSlideData = useMemo(() => slides[currentSlide], [currentSlide])
+  const currentSlideData = useMemo(() => slides[currentSlide], [currentSlide]);
 
   const nextSlide = useCallback(() => {
-    setDirection(1)
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }, [])
+    setDirection(1);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  }, []);
 
   const prevSlide = useCallback(() => {
-    setDirection(-1)
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))
-  }, [])
+    setDirection(-1);
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }, []);
 
   const goToSlide = useCallback(
     (index) => {
-      setDirection(index > currentSlide ? 1 : -1)
-      setCurrentSlide(index)
+      setDirection(index > currentSlide ? 1 : -1);
+      setCurrentSlide(index);
     },
     [currentSlide],
-  )
+  );
 
   useEffect(() => {
-    if (!isAutoPlaying) return
+    if (!isAutoPlaying) return;
 
-    const timer = setInterval(nextSlide, 5000)
-    return () => clearInterval(timer)
-  }, [nextSlide, isAutoPlaying])
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide, isAutoPlaying]);
 
-  const handleMouseEnter = () => setIsAutoPlaying(false)
-  const handleMouseLeave = () => setIsAutoPlaying(true)
+  const handleMouseEnter = () => setIsAutoPlaying(false);
+  const handleMouseLeave = () => setIsAutoPlaying(true);
 
   return (
     <section
       className="relative h-[500px] md:h-[700px] overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      dir="rtl" // Added RTL direction
     >
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-[#EDC870]/10 rounded-full -translate-x-48 -translate-y-48 z-10"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#004A99]/10 rounded-full translate-x-48 translate-y-48 z-10"></div>
+
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
           key={currentSlide}
@@ -158,9 +143,9 @@ export default function OptimizedHeroSlider() {
           </div>
 
           {/* Content */}
-          <div className="relative z-20 h-full flex items-center">
+          <div className="relative z-20 h-full flex items-center justify-center text-center"> {/* Centered content */}
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl text-white text-center">
+              <div className="max-w-4xl text-white">
                 <motion.h1
                   variants={textVariants}
                   initial="hidden"
@@ -181,7 +166,7 @@ export default function OptimizedHeroSlider() {
 
                 <motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
                   <Link to="/contact">
-                    <button className="bg-[#EDC870] hover:bg-[#004A99] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
+                    <button className="bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base shadow-md"> {/* Applied palette colors and shadow */}
                       {currentSlideData.buttonText}
                     </button>
                   </Link>
@@ -193,41 +178,41 @@ export default function OptimizedHeroSlider() {
       </AnimatePresence>
 
       {/* Navigation Arrows */}
-      <div className="absolute inset-y-0 left-4 flex items-center z-30">
+      <div className="absolute inset-y-0 right-4 flex items-center z-30"> {/* Changed left to right for RTL */}
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={prevSlide}
-          className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300"
+          className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 shadow-md" // Added shadow
           aria-label="الشريحة السابقة"
         >
-          <ChevronLeft size={24} />
+          <LucideIcon iconName="ChevronRight" className="w-6 h-6" /> {/* Changed icon to ChevronRight for RTL */}
         </motion.button>
       </div>
 
-      <div className="absolute inset-y-0 right-4 flex items-center z-30">
+      <div className="absolute inset-y-0 left-4 flex items-center z-30"> {/* Changed right to left for RTL */}
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={nextSlide}
-          className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300"
+          className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 shadow-md" // Added shadow
           aria-label="الشريحة التالية"
         >
-          <ChevronRight size={24} />
+          <LucideIcon iconName="ChevronLeft" className="w-6 h-6" /> {/* Changed icon to ChevronLeft for RTL */}
         </motion.button>
       </div>
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-        <div className="flex space-x-2 space-x-reverse">
+        <div className="flex space-x-2 space-x-reverse"> {/* Added space-x-reverse for RTL */}
           {slides.map((_, index) => (
             <motion.button
               key={index}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.8 }}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-white" : "bg-white/50"
+              className={`w-3 h-3 rounded-full transition-all duration-300 shadow-sm ${ // Added shadow
+                index === currentSlide ? "bg-[#EDC870]" : "bg-white/50" // Applied accent color
               }`}
               aria-label={`الذهاب للشريحة ${index + 1}`}
             />
@@ -235,5 +220,5 @@ export default function OptimizedHeroSlider() {
         </div>
       </div>
     </section>
-  )
+  );
 }

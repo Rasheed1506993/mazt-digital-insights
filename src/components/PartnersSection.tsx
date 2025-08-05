@@ -1,29 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-
-const partners = [
-  {
-    name: "دفاتر",
-    logo: "https://aztc.sa/wp-content/uploads/2024/01/dafater.webp",
-    url: "#",
-  },
-  {
-    name: "قيود",
-    logo: "https://aztc.sa/wp-content/uploads/2024/01/qoyod.webp",
-    url: "#",
-  },
-  {
-    name: "ريسورت",
-    logo: "https://aztc.sa/wp-content/uploads/2024/01/resort.webp",
-    url: "#",
-  },
-  {
-    name: "رواء",
-    logo: "https://aztc.sa/wp-content/uploads/2024/01/rewaa.webp",
-    url: "#",
-  },
-];
+import { TEXTS } from '../constants/texts'; // Assuming texts.ts is in ../constants/
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -70,7 +48,7 @@ const PartnersSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section ref={ref} className="py-16 md:py-24 bg-[#F9FAFB]">
+    <section ref={ref} className="py-16 md:py-24 bg-[#F9FAFB]" dir="rtl"> {/* Added dir="rtl" */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
@@ -84,10 +62,10 @@ const PartnersSection = () => {
             className="lg:col-span-4 text-center lg:text-right"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-[#1C1C1C] mb-4">
-              شركاؤنا الاستراتيجيون
+              {TEXTS.partnersSection.title}
             </h2>
             <p className="text-[#6B7280] text-lg">
-              نتعاون مع أفضل المنصات لضمان جودة خدماتنا
+              {TEXTS.partnersSection.description}
             </p>
           </motion.div>
 
@@ -97,7 +75,7 @@ const PartnersSection = () => {
             className="lg:col-span-8"
           >
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-              {partners.map((partner, index) => (
+              {TEXTS.partnersSection.partners.map((partner, index) => (
                 <motion.a
                   key={index}
                   href={partner.url}
@@ -105,7 +83,7 @@ const PartnersSection = () => {
                   rel="noopener noreferrer"
                   variants={partnerVariants}
                   whileHover="hover"
-                  className="group bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center h-full min-h-[120px] border border-gray-100 hover:border-[#3A86FF]"
+                  className="group bg-white p-4 sm:p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center h-full min-h-[120px] border border-[#E0E0E0] hover:border-[#004A99]" // Applied palette colors for border
                 >
                   <div className="relative w-full h-12 sm:h-16">
                     <img

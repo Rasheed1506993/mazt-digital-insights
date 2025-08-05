@@ -1,11 +1,48 @@
 import type React from "react"
-
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { TEXTS } from '../constants/texts';
+// Placeholder for Header and Footer to make this component self-contained
+const Header = () => <header className="bg-[#004A99] text-white p-4 text-center">Header Placeholder</header>;
+const Footer = () => <footer className="bg-[#004A99] text-white p-4 text-center">Footer Placeholder</footer>;
 
+// TEXTS constant (imported from texts.ts in a real app)
+
+
+// A single function to replace the Lucide icons with inline SVGs
+const LucideIcon = ({ iconName, className }) => {
+  const icons = {
+    Calculator: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="14"/><line x1="12" x2="12" y1="14" y2="14"/><line x1="8" x2="8" y1="14" y2="14"/><line x1="16" x2="16" y1="10" y2="10"/><line x1="12" x2="12" y1="10" y2="10"/><line x1="8" x2="8" y1="10" y2="10"/></svg>
+    ),
+    FileText: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+    ),
+    ShieldCheck: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+    ),
+    Lightbulb: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 6c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/><path d="M11 17v5"/><path d="M12 14v3"/></svg>
+    ),
+    Briefcase: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    ),
+    Home: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    ),
+    Percent: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+    ),
+    Users: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    ),
+  };
+  return icons[iconName] || null;
+};
+
+
+// تعريف حركات Framer Motion
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -97,15 +134,15 @@ export default function WithholdingTax() {
       {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
-                style={{
-  backgroundImage: `url(${import.meta.env.BASE_URL}images/withholding-tax.webp)`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-}}
+        style={{
+          backgroundImage: `url(${import.meta.env.BASE_URL}images/withholding-tax.webp)`,// Placeholder image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         <motion.div
-          className="absolute inset-0 bg-black/60"
+          className="absolute inset-0 bg-[#004A99]/70" // Primary Blue with opacity
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -123,7 +160,7 @@ export default function WithholdingTax() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              خدمة
+              {TEXTS.withholdingTax.hero.serviceLabel}
             </motion.div>
             <motion.h1
               className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight md:leading-[58px]"
@@ -131,7 +168,7 @@ export default function WithholdingTax() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              ضريبة الاستقطاع
+              {TEXTS.withholdingTax.hero.title}
             </motion.h1>
             <motion.p
               className="text-sm md:text-lg mb-6 md:mb-8 leading-relaxed"
@@ -139,17 +176,17 @@ export default function WithholdingTax() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9 }}
             >
-شركاء الدقة لخدمات الأعمال يقدم خدمات شاملة في مجال ضريبة الدخل، حيث يسعى لتقديم تجربة مالية سلسة وموثوقة لعملائه. يضمن المكتب تقديم إقرارات الضريبة بفعالية وفي الوقت المحدد، حيث يتولى فريق من المحترفين مهمة حساب ضريبة الدخل ومتابعة جميع الجوانب المالية المرتبطة بها. يهدف ذلك إلى تخفيف العبء عن عملائه وتمكينهم من تقديم الإقرارات الضريبية بكل يسر وسهولة.
+              {TEXTS.withholdingTax.hero.description}
             </motion.p>
             <motion.button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto"
+              className="bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] px-6 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              أطلب الخدمة الآن
+              {TEXTS.withholdingTax.hero.button}
             </motion.button>
           </motion.div>
         </div>
@@ -159,8 +196,8 @@ export default function WithholdingTax() {
         {/* Services Section */}
         <AnimatedSection className="mb-16">
           <div className="text-center mb-12">
-            <motion.h2 className="text-4xl font-bold text-gray-900 mb-4" {...fadeInUp}>
-              استشـارات ضريبة الاستقطاع
+            <motion.h2 className="text-4xl font-bold text-[#1C1C1C] mb-4" {...fadeInUp}>
+              {TEXTS.withholdingTax.servicesSection.title}
             </motion.h2>
             <motion.div
               className="max-w-[90%] mx-auto"
@@ -168,9 +205,8 @@ export default function WithholdingTax() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <p className="text-lg text-gray-700 font-bold">
-                
-يقدم شركاء الدقة لخدمات الأعمال خدمات متكاملة للشركات لضمان التزامها بالضوابط الضريبية وتحقيق أقصى استفادة من نظام الاستقطاع بشكل فعّال
+              <p className="text-lg text-[#6B7280] font-bold">
+                {TEXTS.withholdingTax.servicesSection.intro}
               </p>
             </motion.div>
           </div>
@@ -181,43 +217,18 @@ export default function WithholdingTax() {
             initial="initial"
             animate="animate"
           >
-            {[
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/review_12066077-50x50.png",
-                title: "تحديد التزامات الاستقطاع",
-                description:
-                  " لمساعدة الشركات في تحديد الأنشطة والمدفوعات التي تخضع لضريبة الاستقطاع وتحديد النسب المحددة للخصم .",
-              },
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/stress-test_11245686-50x50.png",
-                title: "تطبيق اللوائح الضريبية",
-                description:
-                  "نعي جيدًا اللوائح والتشريعات الضريبية في المملكة العربية السعودية، مما يساعد على تجنب المشاكل القانونية وتحقيق التوازن الضريبي.",
-              },
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/strategy_3889706-50x50.png",
-                title: "تقديم الإرشادات والتوجيه",
-                description:
-                  "يقوم المكتب بتقديم الإرشادات اللازمة للشركات حول كيفية تنظيم عمليات الاستقطاع بشكل فعّال وفقًا للمتطلبات القانونية.",
-              },
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/shopping_7936426-50x50.png",
-                title: "الدعم في التفاوض والاعتراض",
-                description:
-                  "في حالة وجود أي نزاعات ضريبية أو حاجة للتفاوض مع الجهات الضريبية، يقدم المكتب دعمًا قويًا للشركات ويسهم في إعداد الاعتراضات إذا لزم الأم.",
-              },
-            ].map((service, index) => (
+            {TEXTS.withholdingTax.servicesSection.cards.map((service, index) => (
               <motion.div
                 key={index}
-                className="bg-[#edc870] p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-[235px] flex flex-col justify-center cursor-pointer"
+                className="bg-[#EDC870] p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-[235px] flex flex-col justify-center cursor-pointer"
                 variants={cardVariants}
                 whileHover="hover"
               >
                 <motion.div className="mb-4" variants={iconVariants}>
-                  <img src={service.icon || "/placeholder.svg"} alt={service.title} className="w-12 h-12 mx-auto" />
+                  <LucideIcon iconName={service.icon} className="w-12 h-12 mx-auto text-[#004A99]" />
                 </motion.div>
                 <motion.h3
-                  className="text-lg font-semibold text-gray-800 mb-3"
+                  className="text-lg font-semibold text-[#004A99] mb-3"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -225,7 +236,7 @@ export default function WithholdingTax() {
                   {service.title}
                 </motion.h3>
                 <motion.p
-                  className="text-gray-700 text-sm"
+                  className="text-[#004A99] text-sm"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -238,7 +249,7 @@ export default function WithholdingTax() {
         </AnimatedSection>
 
         {/* Industries Section */}
-        <AnimatedSection className="py-16 bg-[#423f42] border-b border-white mb-16">
+        <AnimatedSection className="py-16 bg-[#004A99] border-b border-white mb-16">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-12"
@@ -247,7 +258,7 @@ export default function WithholdingTax() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl font-bold text-white mb-4">
-                الأنشطة المشمولة في ضريبة الاستقطاع
+                {TEXTS.withholdingTax.activitiesSection.title}
               </h2>
             </motion.div>
 
@@ -257,32 +268,7 @@ export default function WithholdingTax() {
               initial="initial"
               animate="animate"
             >
-              {[
-                {
-                  icon: "svg",
-                  title: "الخدمات المقدمة",
-                  description:
-                    "يتم استقطاع نسبة ضريبية من الأموال المدفوعة مقابل خدمات معينة مثل الاستشارات، والتصميم، والتسويق. هذا يشمل الشركات التي تقدم خدمات مهنية واستشارات في مجموعة متنوعة من القطاعات.",
-                },
-                {
-                  icon: "https://aztc.sa/wp-content/uploads/2024/01/town_11898494-45x45.png",
-                  title: "بيع السلع",
-                  description:
-                    "في حالة البيع بالجملة أو بالتجزئة، يتم استقطاع ضريبة معينة من قيمة السلع المباعة. يشمل ذلك الشركات التي تشتغل في مجالات التجزئة والجملة.",
-                },
-                {
-                  icon: "https://aztc.sa/wp-content/uploads/2024/01/healthy_13622026-45x45.png",
-                  title: "الرواتب والأجور",
-                  description:
-                    "يتم استقطاع نسبة معينة من رواتب العاملين في القطاعين العام والخاص كجزء من التزاماتهم الضريبية. يُعد هذا جزءًا من الجهود الحكومية لتحصيل الإيرادات الضريبية.",
-                },
-                {
-                  icon: "https://aztc.sa/wp-content/uploads/2024/01/cash_12776579-45x45.png",
-                  title: "الإيجارات والعقود",
-                  description:
-                    "العقود التي تشمل تأجير ممتلكات مثل العقارات والمعدات تخضع أيضًا لضريبة الاستقطاع. يتم تحديد نسبة الضريبة استنادًا إلى قيمة الإيجار أو العقد.",
-                },
-              ].map((industry, index) => (
+              {TEXTS.withholdingTax.activitiesSection.cards.map((industry, index) => (
                 <motion.div
                   key={index}
                   className="flex items-center space-x-4 space-x-reverse cursor-pointer"
@@ -290,20 +276,12 @@ export default function WithholdingTax() {
                   whileHover="hover"
                 >
                   <motion.div
-                    className="bg-[#edc870] p-3 rounded-full"
+                    className="bg-[#EDC870] p-3 rounded-full"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
                     <div className="w-11 h-11 flex items-center justify-center">
-                      {industry.icon === "svg" ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 1.70666 1.70666">
-                          <g fill="rgb(0,0,0)">
-                            <path d="m1.32675 1.41018h-.372555c-.0110394 0-.02-.0089685-.02-.02v-.149736c-.0217047-.28526.16961-.420189.17778-.425799.0550709-.043748.14865-.119417.16065-.132752.0218898-.0243189.0482362-.0382598.0722638-.0382598.020748 0 .0373307.0108465.0443346.029.0174567.0452087-.0264724.118693-.123697.206902-.0275945.0250551-.027626.0357795-.027626.0358898.00069291.0002126.0078622.00394094.0249724.00394094.0246654 0 .0551102-.00767717.0775512-.0195512.129972-.0688622.157736-.225819.158016-.227402l.041122-.272496c.00977953-.064748.0479173-.0877205.077626-.0877205.0185984 0 .0368465.00812598.0513937.022878.021315.021626.0327638.0548858.0322165.0936772-.00058268.0416535-.00011024.116445.00544488.236291.0105551.227736-.189315.444594-.26722.508941-.0654567.0540827-.0864449.170961-.0924134.218693-.00126378.00999213-.00977953.0175039-.0198583.0175039zm-.352555-.0400157h.335165c.00924803-.0596102.0351654-.170039.104177-.227051.073626-.0608031.262528-.264886.252732-.47626-.00558661-.120831-.00606693-.196496-.0054685-.238689.00037008-.0275945-.0071811-.0513071-.0207087-.0650394-.00698819-.00707087-.015126-.0109685-.0229213-.0109685-.0182087 0-.0331535.0210787-.0380669.0536929l-.0411811.272831c-.00127559.00757087-.0315433.178445-.178791.256445-.0282087.0149291-.0650945.0242087-.0962598.0242087-.0442205 0-.0580984-.0188189-.0624291-.0300394-.0127953-.0331378.0255827-.0679724.0381929-.0794173.103197-.093626.119205-.147484.113264-.162874-.00048819-.00127559-.0013189-.00341732-.00702756-.00341732-.00923622 0-.0259016.00655512-.0425433.0250276-.0181929.0202087-.151484.126134-.166638.138134-.00845669.00591732-.181874.129276-.161583.391331.00003937.00051575.00006693.00102756.00006693.00154331l.00000394.130543h.00001575z" />
-                          </g>
-                        </svg>
-                      ) : (
-                        <img src={industry.icon || "/placeholder.svg"} alt={industry.title} className="w-11 h-11" />
-                      )}
+                      <LucideIcon iconName={industry.icon} className="w-11 h-11 text-[#004A99]" />
                     </div>
                   </motion.div>
                   <motion.div
@@ -320,6 +298,79 @@ export default function WithholdingTax() {
             </motion.div>
           </div>
         </AnimatedSection>
+
+        {/* Process Section */}
+        <section className="py-20 bg-[#F9FAFB]"> {/* Light gray background */}
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <h2 className="text-3xl font-bold text-[#1C1C1C] mb-6">
+                  {TEXTS.withholdingTax.processSection.title}
+                </h2>
+                <p className="text-lg text-[#6B7280]">
+                  {TEXTS.withholdingTax.processSection.intro}
+                </p>
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {TEXTS.withholdingTax.processSection.steps.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="text-center"
+                  >
+                    <div className="w-16 h-16 bg-[#EDC870] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-[#004A99] font-bold text-lg">{item.step}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-[#1C1C1C] mb-3">{item.title}</h3>
+                    <p className="text-[#6B7280]">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-[#004A99]"> {/* Primary Blue background */}
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-3xl font-bold text-white mb-6">
+                  {TEXTS.withholdingTax.ctaSection.title}
+                </h2>
+                <p className="text-xl text-white/70 mb-8">
+                  {TEXTS.withholdingTax.ctaSection.description}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a
+                    href="/contact" // Assuming /contact is the path
+                    className="bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105"
+                  >
+                    {TEXTS.withholdingTax.ctaSection.button1}
+                  </a>
+                  <a
+                    href="tel:+966539628489"
+                    className="border-2 border-white text-white hover:bg-white hover:text-[#004A99] font-semibold px-8 py-4 rounded-lg transition-all duration-300"
+                  >
+                    {TEXTS.withholdingTax.ctaSection.button2}
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   )

@@ -4,14 +4,9 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Placeholder Link component for this environment
-const Link = ({ to, children }) => (
-  <a href={to} onClick={(e) => e.preventDefault()}>
-    {children}
-  </a>
-);
 
 const containerVariants = {
   hidden: { opacity: 0 },

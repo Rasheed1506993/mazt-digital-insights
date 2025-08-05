@@ -1,11 +1,55 @@
 import type React from "react"
 
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { TEXTS } from '../constants/texts';
 
+
+// A single function to replace the Lucide icons with inline SVGs
+const LucideIcon = ({ iconName, className }) => {
+  const icons = {
+    FilePlus: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+    ),
+    CheckCircle: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    ),
+    PlaySquare: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
+    ),
+    TrendingUp: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+    ),
+    BarChart: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+    ),
+    Gauge: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 14 4-4"/><path d="M3.34 19.06a8.5 8.5 0 0 1 14.32 1.4L21 17"/><path d="M21 7L17.66 4.94A8.5 8.5 0 0 0 3.34 5.94"/><path d="M12 2v20"/></svg>
+    ),
+    Target: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+    ),
+    Tag: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12.5 6.4L18.7 12.6a2.41 2.41 0 0 1 0 3.4L13.4 21.3a2.41 2.41 0 0 1-3.4 0L3.7 15.9a2.41 2.41 0 0 1 0-3.4L9.9 6.4a2.41 2.41 0 0 1 3.4 0z"/><circle cx="9" cy="9" r="2"/></svg>
+    ),
+    Briefcase: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    ),
+    Factory: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V8H2v12z"/><path d="M19 7V4a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v3"/><path d="M12 22v-8"/><path d="M8 22v-4"/><path d="M16 22v-4"/></svg>
+    ),
+    HeartPulse: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.2 12.8H2"/><path d="M22 12.8h-1.2"/><path d="M12 2.8V2"/><path d="M12 22v-1.2"/></svg>
+    ),
+    ShoppingCart: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+    ),
+  };
+  return icons[iconName] || null;
+};
+
+// Animation variants
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -97,16 +141,15 @@ export default function BudgeTs() {
       {/* Hero Section */}
       <section
         className="relative h-[400px] md:h-[600px] bg-cover bg-center bg-no-repeat overflow-hidden"
-                
         style={{
-  backgroundImage: `url(${import.meta.env.BASE_URL}images/budgets.jpg)`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-}}
+          backgroundImage: `url('/images/budgets.webp')`, // Placeholder image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         <motion.div
-          className="absolute inset-0 bg-black/60"
+          className="absolute inset-0 bg-[#004A99]/70" // Primary Blue with increased transparency
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -124,7 +167,7 @@ export default function BudgeTs() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              خدمة
+              {TEXTS.budgets.hero.serviceLabel}
             </motion.div>
             <motion.h1
               className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight md:leading-[58px]"
@@ -132,7 +175,7 @@ export default function BudgeTs() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              الموازنات
+              {TEXTS.budgets.hero.title}
             </motion.h1>
             <motion.p
               className="text-sm md:text-lg mb-6 md:mb-8 leading-relaxed"
@@ -140,17 +183,17 @@ export default function BudgeTs() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9 }}
             >
-خدمة استشارات الموازنات من شركاء الدقة لخدمات الأعمال تساعد في تحقيق التوازن المالي وتحقيق الأهداف الاستراتيجية للشركات والمنشآت، خلال عملية حيوية تسهم في فحص وتحليل الإيرادات والنفقات الكلية على مدى فترة زمنية معينة، بهدف تحقيق التوازن الفعّال بينها وبين تحقيق أهداف الشركة على المدى القصير والطويل.
+              {TEXTS.budgets.hero.description}
             </motion.p>
             <motion.button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto"
+              className="bg-[#EDC870] hover:bg-[#D4B564] text-[#004A99] px-6 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              أطلب الخدمة الآن
+              {TEXTS.budgets.hero.button}
             </motion.button>
           </motion.div>
         </div>
@@ -160,8 +203,8 @@ export default function BudgeTs() {
         {/* Services Section */}
         <AnimatedSection className="mb-16">
           <div className="text-center mb-12">
-            <motion.h2 className="text-4xl font-bold text-gray-900 mb-4" {...fadeInUp}>
-              استشـارات الموازنات
+            <motion.h2 className="text-4xl font-bold text-[#1C1C1C] mb-4" {...fadeInUp}>
+              {TEXTS.budgets.servicesSection.title}
             </motion.h2>
             <motion.div
               className="max-w-[90%] mx-auto"
@@ -169,9 +212,8 @@ export default function BudgeTs() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <p className="text-lg text-gray-700 font-bold">
-              
-أهداف خدمة استشارات الموازنات من شركاء الدقة لخدمات الأعمال:
+              <p className="text-lg text-[#6B7280] font-bold">
+                {TEXTS.budgets.servicesSection.intro}
               </p>
             </motion.div>
           </div>
@@ -182,43 +224,18 @@ export default function BudgeTs() {
             initial="initial"
             animate="animate"
           >
-            {[
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/review_12066077-50x50.png",
-                title: "التحكم الفعّال في لإيرادات والنفقات",
-                description:
-                  " توفير استشارات حول كيفية تحديد وتنظيم الميزانية العامة، بالإضافة إلى تحليل ومراقبة النفقات لضمان استخدام الموارد بكفاءة",
-              },
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/stress-test_11245686-50x50.png",
-                title: "تقييم الأداء المالي والتشغيلي",
-                description:
-                  "إجراء تحليل متقدم للأداء المالي لتحديد النقاط القوة والضعف، عبر تقديم توصيات لتحسين الأداء التشغيلي.",
-              },
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/strategy_3889706-50x50.png",
-                title: "التنبؤ بالإيرادات والنفقات المستقبلية",
-                description:
-                  " توفير استشارات حول كيفية تقدير الإيرادات والنفقات المستقبلية، بناءً على تحليل المخاطر المحتملة وتطوير استراتيجيات لمواجهتها",
-              },
-              {
-                icon: "https://aztc.sa/wp-content/uploads/2024/01/shopping_7936426-50x50.png",
-                title: "الموازنة بين الإيرادات والنفقات",
-                description:
-                  "تقديم إرشادات حول كيفية تحقيق التوازن بين الإيرادات والنفقات بشكل فعّال، تحليل البيانات المالية لتحديد المجالات التي يمكن تحسينها.",
-              },
-            ].map((service, index) => (
+            {TEXTS.budgets.servicesSection.cards.map((service, index) => (
               <motion.div
                 key={index}
-                className="bg-[#edc870] p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-[235px] flex flex-col justify-center cursor-pointer"
+                className="bg-[#EDC870] p-4 md:p-6 rounded-lg text-center h-auto min-h-[200px] md:h-[235px] flex flex-col justify-center cursor-pointer"
                 variants={cardVariants}
                 whileHover="hover"
               >
                 <motion.div className="mb-4" variants={iconVariants}>
-                  <img src={service.icon || "/placeholder.svg"} alt={service.title} className="w-12 h-12 mx-auto" />
+                  <LucideIcon iconName={service.icon} className="w-12 h-12 mx-auto text-[#004A99]" />
                 </motion.div>
                 <motion.h3
-                  className="text-lg font-semibold text-gray-800 mb-3"
+                  className="text-lg font-semibold text-[#004A99] mb-3"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -226,7 +243,7 @@ export default function BudgeTs() {
                   {service.title}
                 </motion.h3>
                 <motion.p
-                  className="text-gray-700 text-sm"
+                  className="text-[#004A99] text-sm"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -238,8 +255,8 @@ export default function BudgeTs() {
           </motion.div>
         </AnimatedSection>
 
-        {/* Industries Section */}
-        <AnimatedSection className="py-16 bg-[#423f42] border-b border-white mb-16">
+        {/* Process Section */}
+        <AnimatedSection className="py-16 bg-[#004A99] border-b border-white mb-16">
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-12"
@@ -248,7 +265,7 @@ export default function BudgeTs() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl font-bold text-white mb-4">
-              عملية الموازنة العامة في المحاسبة تمثل مسارًا مهمًا يتألف من أربع مراحل رئيسية
+                {TEXTS.budgets.processSection.title}
               </h2>
             </motion.div>
 
@@ -258,32 +275,7 @@ export default function BudgeTs() {
               initial="initial"
               animate="animate"
             >
-              {[
-                {
-                  icon: "svg",
-                  title: "مرحلة الإعداد",
-                  description:
-" تجميع وتحليل المعلومات المالية الخاصة بالإيرادات والنفقات. تحديد الأهداف المالية والإستراتيجيات التي تسعى الشركة لتحقيقها تحديد الميزانية العامة وتوزيع الموارد بشكل فعّال وفقًا لاحتياجات الشركة."
-                },
-                {
-                  icon: "https://aztc.sa/wp-content/uploads/2024/01/town_11898494-45x45.png",
-                  title: "مرحلة الإقرار",
-                  description:
-" مرحلة الموافقة والتأكيد على الميزانية من قبل الإدارة العليا أو الهيئة الرقابية. الاطلاع على الميزانية والتحقق من توافقها مع أهداف الشركة واستراتيجياتها. التعديلات أو التعديلات اللاحقة بناءً على الملاحظات والتوجيهات.",
-                },
-                {
-                  icon: "https://aztc.sa/wp-content/uploads/2024/01/healthy_13622026-45x45.png",
-                  title: "مرحلة التنفيذ",
-                  description:
-" تنفيذ الخطط والأنشطة وفقًا للتوجيهات المحددة. إدارة وتحكم في الإيرادات والنفقات بشكل يومي إجراء التعديلات اللازمة بناءً على التغيرات في البيئة الخارجية أو احتياجات الشركة.",
-                },
-                {
-                  icon: "https://aztc.sa/wp-content/uploads/2024/01/cash_12776579-45x45.png",
-                  title: "المتابعة والتقييم",
-                  description:
-" تقييم الأداء المالي والتشغيلي بناءً على البيانات الفعلية ومقارنتها مع الميزانية المعتمدة. تحليل لتحديد نجاح تنفيذ الاستراتيجيات وتحقيق الأهداف. إعداد التقارير المالية والتشغيلية للمساهمة في عمليات اتخاذ القرارات.",
-                },
-              ].map((industry, index) => (
+              {TEXTS.budgets.processSection.cards.map((item, index) => (
                 <motion.div
                   key={index}
                   className="flex items-center space-x-4 space-x-reverse cursor-pointer"
@@ -291,20 +283,12 @@ export default function BudgeTs() {
                   whileHover="hover"
                 >
                   <motion.div
-                    className="bg-[#edc870] p-3 rounded-full"
+                    className="bg-[#EDC870] p-3 rounded-full"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
                     <div className="w-11 h-11 flex items-center justify-center">
-                      {industry.icon === "svg" ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 1.70666 1.70666">
-                          <g fill="rgb(0,0,0)">
-                            <path d="m1.32675 1.41018h-.372555c-.0110394 0-.02-.0089685-.02-.02v-.149736c-.0217047-.28526.16961-.420189.17778-.425799.0550709-.043748.14865-.119417.16065-.132752.0218898-.0243189.0482362-.0382598.0722638-.0382598.020748 0 .0373307.0108465.0443346.029.0174567.0452087-.0264724.118693-.123697.206902-.0275945.0250551-.027626.0357795-.027626.0358898.00069291.0002126.0078622.00394094.0249724.00394094.0246654 0 .0551102-.00767717.0775512-.0195512.129972-.0688622.157736-.225819.158016-.227402l.041122-.272496c.00977953-.064748.0479173-.0877205.077626-.0877205.0185984 0 .0368465.00812598.0513937.022878.021315.021626.0327638.0548858.0322165.0936772-.00058268.0416535-.00011024.116445.00544488.236291.0105551.227736-.189315.444594-.26722.508941-.0654567.0540827-.0864449.170961-.0924134.218693-.00126378.00999213-.00977953.0175039-.0198583.0175039zm-.352555-.0400157h.335165c.00924803-.0596102.0351654-.170039.104177-.227051.073626-.0608031.262528-.264886.252732-.47626-.00558661-.120831-.00606693-.196496-.0054685-.238689.00037008-.0275945-.0071811-.0513071-.0207087-.0650394-.00698819-.00707087-.015126-.0109685-.0229213-.0109685-.0182087 0-.0331535.0210787-.0380669.0536929l-.0411811.272831c-.00127559.00757087-.0315433.178445-.178791.256445-.0282087.0149291-.0650945.0242087-.0962598.0242087-.0442205 0-.0580984-.0188189-.0624291-.0300394-.0127953-.0331378.0255827-.0679724.0381929-.0794173.103197-.093626.119205-.147484.113264-.162874-.00048819-.00127559-.0013189-.00341732-.00702756-.00341732-.00923622 0-.0259016.00655512-.0425433.0250276-.0181929.0202087-.151484.126134-.166638.138134-.00845669.00591732-.181874.129276-.161583.391331.00003937.00051575.00006693.00102756.00006693.00154331l.00000394.130543h.00001575z" />
-                          </g>
-                        </svg>
-                      ) : (
-                        <img src={industry.icon || "/placeholder.svg"} alt={industry.title} className="w-11 h-11" />
-                      )}
+                      <LucideIcon iconName={item.icon} className="w-11 h-11 text-[#004A99]" />
                     </div>
                   </motion.div>
                   <motion.div
@@ -313,8 +297,8 @@ export default function BudgeTs() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <h3 className="text-xl font-semibold text-white mb-3">{industry.title}</h3>
-                    <p className="text-white text-sm font-medium">{industry.description}</p>
+                    <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
+                    <p className="text-white text-sm font-medium">{item.description}</p>
                   </motion.div>
                 </motion.div>
               ))}
