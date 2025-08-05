@@ -3,14 +3,9 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, memo } from "react"
 import LazyImage from "./LazyImage"
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Placeholder Link component for this environment
-const Link = ({ to, children }) => (
-  <a href={to} onClick={(e) => e.preventDefault()}>
-    {children}
-  </a>
-);
 
 const services = [
   {
@@ -139,15 +134,17 @@ export default function OptimizedServicesSection() {
 
           {/* CTA Button */}
           <motion.div variants={titleVariants} className="text-center">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-[#EDC870] hover:bg-[#004A99] text-white px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 font-semibold text-sm sm:text-base"
-            >
-              <Link to="/services">
-                قراءة المزيد
-              </Link>
-            </motion.button>
+
+<motion.button
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+  className="bg-[#EDC870] hover:bg-[#004A99] text-white px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 font-semibold text-sm sm:text-base"
+>
+  <Link to="/services" className="block w-full h-full">
+    قراءة المزيد
+  </Link>
+</motion.button>
+
           </motion.div>
         </motion.div>
       </div>
