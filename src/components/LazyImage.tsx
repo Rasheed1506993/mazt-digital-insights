@@ -1,43 +1,42 @@
-
-import { useState, useRef, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 interface LazyImageProps {
-  src: string
-  alt: string
-  className?: string
-  width?: number
-  height?: number
-  priority?: boolean
+  src: string;
+  alt: string;
+  className?: string;
+  width?: number;
+  height?: number;
+  priority?: boolean;
 }
 
 export default function LazyImage({ src, alt, className = "", width, height, priority = false }: LazyImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [isInView, setIsInView] = useState(false)
-  const imgRef = useRef<HTMLImageElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef(null);
 
   useEffect(() => {
     if (priority) {
-      setIsInView(true)
-      return
+      setIsInView(true);
+      return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsInView(true)
-          observer.disconnect()
+          setIsInView(true);
+          observer.disconnect();
         }
       },
       { threshold: 0.1, rootMargin: "50px" },
-    )
+    );
 
     if (imgRef.current) {
-      observer.observe(imgRef.current)
+      observer.observe(imgRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [priority])
+    return () => observer.disconnect();
+  }, [priority]);
 
   return (
     <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
@@ -61,5 +60,5 @@ export default function LazyImage({ src, alt, className = "", width, height, pri
         />
       )}
     </div>
-  )
+  );
 }

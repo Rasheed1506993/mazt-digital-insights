@@ -1,27 +1,82 @@
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import { MapPin, Mail, Clock } from "lucide-react"
-import { Link } from 'react-router-dom';
+// A single function to replace the Lucide icons
+const LucideIcon = ({ iconName, className }) => {
+  const icons = {
+    MapPin: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+      >
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    ),
+    Mail: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+      >
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </svg>
+    ),
+    Clock: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+      >
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
+  };
+  return icons[iconName] || null;
+};
 
 const contactInfo = [
   {
-    icon: MapPin,
+    icon: "MapPin",
     title: "مكة المكرمة - الشوقية - مقابل كنتكي",
     link: "https://maps.app.goo.gl/mecca-location",
   },
   {
-    icon: Mail,
+    icon: "Mail",
     title: "info@aldikka.com",
     link: "mailto:info@aldikka.com",
   },
   {
-    icon: Clock,
+    icon: "Clock",
     title: "٩ صباحاً – ٥ مساءً",
     link: null,
   },
-]
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,7 +86,7 @@ const containerVariants = {
       staggerChildren: 0.2,
     },
   },
-}
+};
 
 const leftVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -43,7 +98,7 @@ const leftVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 const rightVariants = {
   hidden: { opacity: 0, x: 50 },
@@ -55,7 +110,7 @@ const rightVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 const ctaVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -67,40 +122,40 @@ const ctaVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 const ContactSection = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <>
       {/* CTA Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-r from-gray-100 to-gray-200 relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-r from-[#F9FAFB] to-gray-200 relative overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <motion.div variants={ctaVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#423f42] mb-4 max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1C1C1C] mb-4 max-w-4xl mx-auto">
               احصل على استشارتك الأولى اليوم وانطلق في مسارك الصحيح
             </h2>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-[#6B7280] mb-8 max-w-2xl mx-auto">
               نلتزم بتقديم أفضل الخدمات لك، ونضمن أن تكون تجربتك معنا مميزة. ابتعد عن التقليد واستفد من خبرتنا في مجال
               التحول الرقمي.
             </p>
             <Link to="/contact">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#423f42] hover:bg-[#edc870] text-white px-8 py-4 rounded-lg transition-all duration-300 font-semibold text-lg"
-            >
-              تواصل الآن
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#3A86FF] hover:bg-[#FFB300] text-white px-8 py-4 rounded-lg transition-all duration-300 font-semibold text-lg"
+              >
+                تواصل الآن
+              </motion.button>
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section ref={ref} className="py-12 md:py-20 bg-white">
+      <section ref={ref} className="py-12 md:py-20 bg-[#F9FAFB]">
         <div className="container mx-auto px-4">
           <motion.div
             variants={containerVariants}
@@ -111,9 +166,9 @@ const ContactSection = () => {
             {/* Left Content */}
             <motion.div variants={leftVariants}>
               <div className="mb-8">
-                <p className="text-[#423f42] font-semibold mb-2">تواصل معنا</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#423f42] mb-6">
-                  تواصل مع <span className="underline decoration-[#edc870]">شركاء الدقة</span> للإستشارات
+                <p className="text-[#1C1C1C] font-semibold mb-2">تواصل معنا</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-[#1C1C1C] mb-6">
+                  تواصل مع <span className="underline decoration-[#FFB300]">شركاء الدقة</span> للإستشارات
                 </h2>
               </div>
 
@@ -125,8 +180,8 @@ const ContactSection = () => {
                     whileHover={{ x: 10 }}
                     className="flex items-center space-x-4 space-x-reverse group"
                   >
-                    <div className="w-10 h-10 bg-[#edc870] rounded-full flex items-center justify-center group-hover:bg-[#423f42] transition-colors duration-300">
-                      <info.icon className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 bg-[#FFB300] rounded-full flex items-center justify-center group-hover:bg-[#1C1C1C] transition-colors duration-300">
+                      <LucideIcon iconName={info.icon} className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
                       {info.link ? (
@@ -134,12 +189,12 @@ const ContactSection = () => {
                           href={info.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-700 hover:text-[#423f42] transition-colors duration-300"
+                          className="text-[#6B7280] hover:text-[#1C1C1C] transition-colors duration-300"
                         >
                           {info.title}
                         </a>
                       ) : (
-                        <span className="text-gray-700">{info.title}</span>
+                        <span className="text-[#6B7280]">{info.title}</span>
                       )}
                     </div>
                   </motion.div>
@@ -162,11 +217,12 @@ const ContactSection = () => {
                 />
               </div>
             </motion.div>
-       
+
           </motion.div>
         </div>
       </section>
     </>
   );
 };
+
 export default ContactSection;

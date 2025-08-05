@@ -1,10 +1,17 @@
-
-
+//components/OptimizedHeroSlider
 import { useState, useEffect, useCallback, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import LazyImage from "./LazyImage"
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+
+// Placeholder Link component for this environment
+const Link = ({ to, children }) => (
+  <a href={to} onClick={(e) => e.preventDefault()}>
+    {children}
+  </a>
+);
+
 
 const slides = [
   {
@@ -42,7 +49,7 @@ const slides = [
 ]
 
 const slideVariants = {
-  enter: (direction: number) => ({
+  enter: (direction) => ({
     x: direction > 0 ? 1000 : -1000,
     opacity: 0,
   }),
@@ -51,7 +58,7 @@ const slideVariants = {
     x: 0,
     opacity: 1,
   },
-  exit: (direction: number) => ({
+  exit: (direction) => ({
     zIndex: 0,
     x: direction < 0 ? 1000 : -1000,
     opacity: 0,
@@ -106,7 +113,7 @@ export default function OptimizedHeroSlider() {
   }, [])
 
   const goToSlide = useCallback(
-    (index: number) => {
+    (index) => {
       setDirection(index > currentSlide ? 1 : -1)
       setCurrentSlide(index)
     },
@@ -151,7 +158,8 @@ export default function OptimizedHeroSlider() {
               className="w-full h-full object-cover"
               priority={currentSlide === 0}
             />
-            <div className="absolute inset-0 "></div>
+            {/* Overlay for better text readability - adjusted color */}
+            <div className="absolute inset-0 bg-[#004A99]/50"></div>
           </div>
 
           {/* Content */}
@@ -176,13 +184,13 @@ export default function OptimizedHeroSlider() {
                   {currentSlideData.description}
                 </motion.p>
 
-<motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
-  <Link to="/contact">
-    <button className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
-      {currentSlideData.buttonText}
-    </button>
-  </Link>
-</motion.div>
+                <motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
+                  <Link to="/contact">
+                    <button className="bg-[#EDC870] hover:bg-[#004A99] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
+                      {currentSlideData.buttonText}
+                    </button>
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </div>

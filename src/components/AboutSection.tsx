@@ -1,8 +1,17 @@
+//components/AboutSection
 "use client"
 
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+//import { Link } from 'react-router-dom';
+
+// Placeholder Link component for this environment
+const Link = ({ to, children }) => (
+  <a href={to} onClick={(e) => e.preventDefault()}>
+    {children}
+  </a>
+);
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -68,12 +77,12 @@ const AboutSection = () => {
             <div className="text-center mb-8">
               <motion.img
                 variants={imageVariants}
-                src="https://aztc.sa/wp-content/uploads/2024/01/logo-alamoudi-gold-100x100.png"
+                src="/lovable-uploads/khlogo.png" // Updated logo path
                 alt="شعار شركاء الدقة لخدمات الأعمال"
                 className="w-20 h-20 mx-auto mb-6"
               />
 
-              <motion.h2 variants={leftVariants} className="text-2xl md:text-3xl font-bold text-[#423f42] mb-4">
+              <motion.h2 variants={leftVariants} className="text-2xl md:text-3xl font-bold text-[#004A99] mb-4">
                 شركاء الدقة لخدمات الأعمال
               </motion.h2>
 
@@ -89,9 +98,11 @@ const AboutSection = () => {
                 variants={leftVariants}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#edc870] hover:bg-[#423f42] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold"
+                className="bg-[#EDC870] hover:bg-[#004A99] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold"
               >
-                قراءة المزيد
+                <Link to="/about">
+                  قراءة المزيد
+                </Link>
               </motion.button>
             </div>
           </motion.div>

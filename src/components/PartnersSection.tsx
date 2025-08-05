@@ -1,7 +1,6 @@
-// src/components/PartnersSection.tsx
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const partners = [
   {
@@ -66,12 +65,12 @@ const partnerVariants = {
   },
 };
 
-export default function PartnersSection() {
-  const ref = useRef<HTMLDivElement>(null);
+const PartnersSection = () => {
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section ref={ref} className="py-16 md:py-24 bg-white">
+    <section ref={ref} className="py-16 md:py-24 bg-[#F9FAFB]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
@@ -80,20 +79,20 @@ export default function PartnersSection() {
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
         >
           {/* Title Section */}
-          <motion.div 
+          <motion.div
             variants={titleVariants}
             className="lg:col-span-4 text-center lg:text-right"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1C1C1C] mb-4">
               شركاؤنا الاستراتيجيون
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-[#6B7280] text-lg">
               نتعاون مع أفضل المنصات لضمان جودة خدماتنا
             </p>
           </motion.div>
 
           {/* Partners Grid */}
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             className="lg:col-span-8"
           >
@@ -106,7 +105,7 @@ export default function PartnersSection() {
                   rel="noopener noreferrer"
                   variants={partnerVariants}
                   whileHover="hover"
-                  className="group bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center h-full min-h-[120px] border border-gray-100 hover:border-primary-100"
+                  className="group bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center h-full min-h-[120px] border border-gray-100 hover:border-[#3A86FF]"
                 >
                   <div className="relative w-full h-12 sm:h-16">
                     <img
@@ -125,4 +124,6 @@ export default function PartnersSection() {
       </div>
     </section>
   );
-}
+};
+
+export default PartnersSection;

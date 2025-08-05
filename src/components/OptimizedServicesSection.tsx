@@ -1,8 +1,16 @@
+//components/OptimizedServicesSection
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, memo } from "react"
 import LazyImage from "./LazyImage"
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+
+// Placeholder Link component for this environment
+const Link = ({ to, children }) => (
+  <a href={to} onClick={(e) => e.preventDefault()}>
+    {children}
+  </a>
+);
 
 const services = [
   {
@@ -65,7 +73,7 @@ const cardVariants = {
   },
 }
 
-const ServiceCard = memo(({ service, index }: { service: (typeof services)[0]; index: number }) => (
+const ServiceCard = memo(({ service, index }) => (
   <motion.div
     variants={cardVariants}
     whileHover={{
@@ -76,7 +84,7 @@ const ServiceCard = memo(({ service, index }: { service: (typeof services)[0]; i
   >
     <motion.div
       whileHover={{ scale: 1.05, rotate: 2 }}
-      className="w-12 h-12 sm:w-16 sm:h-16 bg-[#edc870] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-[#423f42] transition-colors duration-300"
+      className="w-12 h-12 sm:w-16 sm:h-16 bg-[#EDC870] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-[#004A99] transition-colors duration-300"
     >
       <LazyImage
         src={service.image}
@@ -87,7 +95,7 @@ const ServiceCard = memo(({ service, index }: { service: (typeof services)[0]; i
       />
     </motion.div>
 
-    <h3 className="text-base sm:text-lg font-semibold text-[#423f42] mb-2 sm:mb-3 leading-tight">{service.title}</h3>
+    <h3 className="text-base sm:text-lg font-semibold text-[#004A99] mb-2 sm:mb-3 leading-tight">{service.title}</h3>
     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{service.description}</p>
   </motion.div>
 ))
@@ -113,7 +121,7 @@ export default function OptimizedServicesSection() {
                 height={48}
               />
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#423f42] mb-3 sm:mb-4">خدماتنا</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#004A99] mb-3 sm:mb-4">خدماتنا</h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
               استشارات محاسبية وضريبية متفرّدة لتحقيق الامتثال المالي وتحسّين الأداء الإداري
             </p>
@@ -134,7 +142,7 @@ export default function OptimizedServicesSection() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 font-semibold text-sm sm:text-base"
+              className="bg-[#EDC870] hover:bg-[#004A99] text-white px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 font-semibold text-sm sm:text-base"
             >
               <Link to="/services">
                 قراءة المزيد

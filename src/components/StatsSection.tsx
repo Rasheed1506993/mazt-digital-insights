@@ -1,7 +1,9 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+//src/components/StatsSection
+
+import React, { useState, useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
+
 const stats = [
   {
     number: 2500,
@@ -65,9 +67,9 @@ const statVariants = {
   },
 };
 
-function CountUpAnimation({ end, duration = 2000 }: { end: number; duration?: number }) {
+const CountUpAnimation = ({ end, duration = 2000 }) => {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   useEffect(() => {
@@ -89,19 +91,19 @@ function CountUpAnimation({ end, duration = 2000 }: { end: number; duration?: nu
   }, [end, duration, isInView]);
 
   return <span ref={ref}>{count.toLocaleString()}</span>;
-}
+};
 
-export default function StatsSection() {
-  const ref = useRef<HTMLDivElement>(null);
+const StatsSection = () => {
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section
       ref={ref}
-      className="py-16 md:py-24 bg-gradient-to-r from-[#423f42] to-[#2c2a2c] text-white relative overflow-hidden"
+      className="py-16 md:py-24 bg-gradient-to-r from-[#1C1C1C] to-[#2C2C2C] text-white relative overflow-hidden"
     >
       {/* Noise texture background */}
-      <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JhaW4iIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNzUiIGN5PSI3NSIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTAiIHI9IjEiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjEiLz48Y2lyY2xlIGN4PSIxMCIgY3k9IjYwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iOTAiIGN5PSI0MCIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjZ3JhaW4pIi8+PC9zdmc+')]"></div>
+      <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48cGF0dGVybk9JdD0iZ3JhaW4iIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNzUiIGN5PSI3NSIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTAiIHI9IjEiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjEiLz48Y2lyY2xlIGN4PSIxMCIgY3k9IjYwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iOTAiIGN5PSI0MCIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjZ3JhaW4pIi8+PC9yZWN0Pjwvc3ZnPg==')]"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -120,14 +122,14 @@ export default function StatsSection() {
               دقة العرض والإفصاح للقوائم المالية، وذلك من خلال تطبيق المعايير
               الدولية المحاسبية المتبعة في المملكة العربية السعودية.
             </p>
-      <Link to="/contact">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#edc870] hover:bg-[#d8b360] text-[#423f42] px-8 py-3 rounded-lg transition-all duration-300 font-semibold shadow-md"
-            >
-              تواصل معنا
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#FFB300] hover:bg-[#E0A300] text-white px-8 py-3 rounded-lg transition-all duration-300 font-semibold shadow-md"
+              >
+                تواصل معنا
+              </motion.button>
             </Link>
           </motion.div>
 
@@ -143,7 +145,7 @@ export default function StatsSection() {
                 whileHover="hover"
                 className="bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/10 text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-[#edc870] mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-[#FFB300] mb-2">
                   <CountUpAnimation end={stat.number} duration={2500} />
                   {stat.suffix}
                 </div>
@@ -157,4 +159,6 @@ export default function StatsSection() {
       </div>
     </section>
   );
-}
+};
+
+export default StatsSection;

@@ -1,7 +1,6 @@
-
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const clients = [
   {
@@ -32,7 +31,7 @@ const clients = [
     name: "عميل 7",
     logo: "https://aztc.sa/wp-content/uploads/2024/01/C6-150x150.webp",
   },
-]
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -42,7 +41,7 @@ const containerVariants = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 const titleVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -54,7 +53,7 @@ const titleVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 const clientVariants = {
   hidden: { opacity: 0, scale: 0.8 },
@@ -66,19 +65,19 @@ const clientVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 const ClientsSection = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-12 md:py-20 bg-gray-50">
+    <section ref={ref} className="py-12 md:py-20 bg-[#F9FAFB]">
       <div className="container mx-auto px-4">
         <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
           {/* Title */}
           <motion.div variants={titleVariants} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#423f42]">عملاء مميزين</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1C1C1C]">عملاء مميزين</h2>
           </motion.div>
 
           {/* Clients Grid */}
@@ -94,7 +93,7 @@ const ClientsSection = () => {
                 className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center aspect-square"
               >
                 <img
-                  src={client.logo || "/placeholder.svg"}
+                  src={client.logo || "https://placehold.co/150x150/E0E0E0/333333?text=Logo"}
                   alt={client.name}
                   className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                 />
@@ -106,4 +105,5 @@ const ClientsSection = () => {
     </section>
   );
 };
+
 export default ClientsSection;

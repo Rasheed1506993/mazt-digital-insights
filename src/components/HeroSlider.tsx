@@ -1,8 +1,20 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Link } from 'react-router-dom';
+// A single function to replace the Lucide icons
+const LucideIcon = ({ iconName, className }) => {
+  const icons = {
+    ChevronLeft: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m15 18-6-6 6-6"/></svg>
+    ),
+    ChevronRight: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6"/></svg>
+    ),
+  };
+  return icons[iconName] || null;
+};
+
 const slides = [
   {
     id: 1,
@@ -36,10 +48,10 @@ const slides = [
     image: "https://aztc.sa/wp-content/uploads/2021/08/wepik-export-20240112172525EaNB.jpeg",
     buttonText: "تواصل معنا",
   },
-]
+];
 
 const slideVariants = {
-  enter: (direction: number) => ({
+  enter: (direction) => ({
     x: direction > 0 ? 1000 : -1000,
     opacity: 0,
   }),
@@ -48,12 +60,12 @@ const slideVariants = {
     x: 0,
     opacity: 1,
   },
-  exit: (direction: number) => ({
+  exit: (direction) => ({
     zIndex: 0,
     x: direction < 0 ? 1000 : -1000,
     opacity: 0,
   }),
-}
+};
 
 const textVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -66,7 +78,7 @@ const textVariants = {
       ease: "easeOut",
     },
   },
-}
+};
 
 const buttonVariants = {
   hidden: { opacity: 0, scale: 0.8 },
@@ -83,31 +95,31 @@ const buttonVariants = {
     scale: 1.05,
     transition: { duration: 0.2 },
   },
-}
+};
 
 export default function HeroSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [direction, setDirection] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setDirection(1)
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 5000)
+      setDirection(1);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
 
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearInterval(timer);
+  }, []);
 
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection)
+  const paginate = (newDirection) => {
+    setDirection(newDirection);
     setCurrentSlide((prev) => {
       if (newDirection === 1) {
-        return (prev + 1) % slides.length
+        return (prev + 1) % slides.length;
       } else {
-        return prev === 0 ? slides.length - 1 : prev - 1
+        return prev === 0 ? slides.length - 1 : prev - 1;
       }
-    })
-  }
+    });
+  };
 
   return (
     <section className="relative h-[500px] md:h-[700px] overflow-hidden">
@@ -128,11 +140,13 @@ export default function HeroSlider() {
           {/* Background Image */}
           <div className="absolute inset-0">
             <img
-              src={slides[currentSlide].image || "/placeholder.svg"}
+              src={slides[currentSlide].image || "https://placehold.co/1920x1080/E0E0E0/333333?text=Hero+Image"}
               alt={slides[currentSlide].title}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-600/60"></div>
+            {/* Overlay to darken image */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1C1C1C]/80 to-[#423f42]/60"></div>
           </div>
 
           {/* Content */}
@@ -159,9 +173,9 @@ export default function HeroSlider() {
 
                 <motion.div variants={buttonVariants} initial="hidden" animate="visible" whileHover="hover">
                   <Link to="/contact">
-                  <button className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
-                    {slides[currentSlide].buttonText}
-                  </button>
+                    <button className="bg-[#edc870] hover:bg-[#423f42] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-300 font-semibold text-sm md:text-base">
+                      {slides[currentSlide].buttonText}
+                    </button>
                   </Link>
                 </motion.div>
               </div>
@@ -178,7 +192,7 @@ export default function HeroSlider() {
           onClick={() => paginate(-1)}
           className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300"
         >
-          <ChevronLeft size={24} />
+          <LucideIcon iconName="ChevronLeft" size={24} />
         </motion.button>
       </div>
 
@@ -189,7 +203,7 @@ export default function HeroSlider() {
           onClick={() => paginate(1)}
           className="bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300"
         >
-          <ChevronRight size={24} />
+          <LucideIcon iconName="ChevronRight" size={24} />
         </motion.button>
       </div>
 
@@ -202,8 +216,8 @@ export default function HeroSlider() {
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.8 }}
               onClick={() => {
-                setDirection(index > currentSlide ? 1 : -1)
-                setCurrentSlide(index)
+                setDirection(index > currentSlide ? 1 : -1);
+                setCurrentSlide(index);
               }}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide ? "bg-white" : "bg-white/50"
@@ -213,5 +227,5 @@ export default function HeroSlider() {
         </div>
       </div>
     </section>
-  )
+  );
 }
