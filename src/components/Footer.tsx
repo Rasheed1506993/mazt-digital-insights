@@ -97,9 +97,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-[#003A7A] mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
-          <p className="text-[#F9FAFB]/60 text-xs sm:text-sm">{TEXTS.footer.copyright}</p>
-        </div>
+<div className="border-t border-[#003A7A] mt-8 sm:mt-12 pt-6 sm:pt-8 text-center space-y-1">
+  <p className="text-[#F9FAFB]/60 text-xs sm:text-sm">{TEXTS.footer.copyright}</p>
+  <p className="text-[#EDC870] text-xs sm:text-sm font-light">
+    Designed &amp; developed by Mazen Sharaf Al-deen
+  </p>
+</div>
+
+    
       </div>
     </footer>
   );
