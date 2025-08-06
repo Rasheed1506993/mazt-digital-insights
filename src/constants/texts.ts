@@ -1109,7 +1109,7 @@ export const TEXTS = {
     contactInfo: [
       {
         icon: "MapPin",
-        title: "مكة المكرمة - الشوقية - مقابل كنتكي",
+        title: "مكة المكرمة - الشوقية - مقابل كتكيت",
         link: "https://maps.app.goo.gl/KtkxrjBQLbsq2nBp7?g_st=awb",
       },
       {
@@ -1150,7 +1150,7 @@ export const TEXTS = {
       },
       address: {
         label: 'العنوان',
-        value: 'مكة المكرمة - الشوقية - مقابل كنتكي',
+        value: 'مكة المكرمة - الشوقية - مقابل كتكيت',
       },
       workingHours: {
         label: 'ساعات العمل',
