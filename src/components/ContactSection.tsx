@@ -174,7 +174,7 @@ const ContactSection = () => {
                           rel="noopener noreferrer"
                           className="text-[#6B7280] hover:text-[#004A99] transition-colors duration-300"
                         >
-                          {info.title}
+                          مكة المكرمة - الشوقية - مقابل كتكيت
                         </a>
                       ) : (
                         <span className="text-[#6B7280]">{info.title}</span>
